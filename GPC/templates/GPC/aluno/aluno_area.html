@@ -1,0 +1,199 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}
+Área do Aluno
+{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'GPC/css/estiloaluno.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-7">
+        <h1 class="h1-area-do-estudante"><b>Área do Estudante</b></h1>
+        <h3>Olá, {{user.first_name}}!</h3>
+        <h4>Descubra novas oportunidades.</h4>
+
+        <button class=" button-notificacao">
+          <img src="{% static 'GPC/images/notificacao.png' %}" alt="Ícone notificação">
+          Você tem 3 notificações
+        </button>
+      </div>
+      <div class="col-5">
+        <img class="foto-banner" src="{% static 'GPC/images/banner.png' %}" alt="Banner alunos">
+      </div>
+    </div>
+
+    <p class="alerta-projetovida">
+      Para atrair os olhares dos recrutadores mantenha seu perfil atualizado!<br>
+      <a href="{% url 'projeto-vida' %}">Termine de preencher seu Projeto de Vida</a>
+      <img class="icon-seta" src="{% static 'GPC/images/seta.png' %}" alt="Ícone seta">
+    </p>
+
+    <br>
+
+    <h2>Descubra novas vagas para você</h2>
+
+    <div class="container-cards">
+      <div class="card-vaga">
+        <div class="card-vaga-content">
+
+          <h4 class="card-vaga-titulo"><b>Estágio em Desenvolvimento Python</b></h4>
+
+          <p class="card-vaga-tags">
+            <span class="modelo">Estágio</span>
+            <span class="regime">Home Office</span>
+            <span class="vagas">1 vaga</span>
+          </p>
+
+          <p class="card-vaga-empresa">
+            <img class="icon-seta" src="https://upload.wikimedia.org/wikipedia/pt/9/9e/Logotipo_da_TV_Globo.png?20240626205657" alt="Ícone seta">
+            <b>Globo</b>
+          </p>
+
+          <h5><b>Competências:</b></h5>
+
+          <p class="card-vaga-competencia">
+            <img src="{% static 'GPC/images/circulo-amarelo.png' %}" alt="Ícone seta">
+            Python
+          </p>
+
+          <p class="card-vaga-competencia">
+            <img src="{% static 'GPC/images/circulo-amarelo.png' %}" alt="Ícone seta">
+            Django
+          </p>
+
+          <p class="card-vaga-competencia">
+            <img src="{% static 'GPC/images/circulo-amarelo.png' %}" alt="Ícone seta">
+            Git & Github
+          </p>
+
+          <p class="card-vaga-competencia">
+            <img src="{% static 'GPC/images/circulo-vazio.png' %}" alt="Ícone seta">
+            Flask
+          </p>
+
+          <p class="card-vaga-competencia">
+            <img src="{% static 'GPC/images/circulo-amarelo.png' %}" alt="Ícone seta">
+            Trabalho em Equipe
+          </p>
+          <div class="text-center">
+            <button class="card-vaga-botao">Candidatar-se</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-vaga">
+        <div class="card-vaga-content">
+
+          <h4 class="card-vaga-titulo"><b>Estagiário em Design UX/UI</b></h4>
+
+          <p class="card-vaga-tags">
+            <span class="modelo">Estágio</span>
+            <span class="regime">Híbrido</span>
+            <span class="vagas">1 vaga</span>
+          </p>
+
+          <p class="card-vaga-empresa">
+            <img class="icon-seta" src="https://pngimg.com/d/meta_PNG5.png" alt="Ícone seta">
+            <b>Meta</b>
+          </p>
+
+          <h5><b>Competências:</b></h5>
+
+          <p class="card-vaga-competencia">
+            <img src="{% static 'GPC/images/circulo-amarelo.png' %}" alt="Ícone seta">
+            Figma
+          </p>
+
+          <p class="card-vaga-competencia">
+            <img src="{% static 'GPC/images/circulo-amarelo.png' %}" alt="Ícone seta">
+            HTML
+          </p>
+
+          <p class="card-vaga-competencia">
+            <img src="{% static 'GPC/images/circulo-amarelo.png' %}" alt="Ícone seta">
+            CSS
+          </p>
+
+          <p class="card-vaga-competencia">
+            <img src="{% static 'GPC/images/circulo-vazio.png' %}" alt="Ícone seta">
+            Illustrator
+          </p>
+
+          <p class="card-vaga-competencia">
+            <img src="{% static 'GPC/images/circulo-vazio.png' %}" alt="Ícone seta">
+            Photoshop
+          </p>
+          <div class="text-center">
+            <button class="card-vaga-botao">Candidatar-se</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-vaga">
+        <div class="card-vaga-content">
+
+          <h4 class="card-vaga-titulo"><b>Estagiário de Desenvolvimento Fullstack</b></h4>
+
+          <p class="card-vaga-tags">
+            <span class="modelo">Estágio</span>
+            <span class="regime">Híbrido</span>
+            <span class="vagas">1 vaga</span>
+          </p>
+
+          <p class="card-vaga-empresa">
+            <img class="icon-seta" src="https://static.vecteezy.com/system/resources/previews/017/396/804/non_2x/netflix-mobile-application-logo-free-png.png" alt="Ícone seta">
+            <b>Netflix</b>
+          </p>
+
+          <h5><b>Competências:</b></h5>
+
+          <p class="card-vaga-competencia">
+            <img src="{% static 'GPC/images/circulo-amarelo.png' %}" alt="Ícone seta">
+            React
+          </p>
+
+          <p class="card-vaga-competencia">
+            <img src="{% static 'GPC/images/circulo-amarelo.png' %}" alt="Ícone seta">
+            Node JS
+          </p>
+
+          <p class="card-vaga-competencia">
+            <img src="{% static 'GPC/images/circulo-vazio.png' %}" alt="Ícone seta">
+            Postgree SQL
+          </p>
+
+          <p class="card-vaga-competencia">
+            <img src="{% static 'GPC/images/circulo-amarelo.png' %}" alt="Ícone seta">
+            Python
+          </p>
+
+          <p class="card-vaga-competencia">
+            <img src="{% static 'GPC/images/circulo-amarelo.png' %}" alt="Ícone seta">
+            SQL
+          </p>
+          <div class="text-center">
+            <button class="card-vaga-botao">Candidatar-se</button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <br>
+
+  </div>
+
+  </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+footer {
+    background-color: #013C5A;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 50px;
+    /* Adicionar padding para garantir que os elementos internos não toquem as bordas do footer */
+    box-sizing: border-box;
+    /* Inclui o padding e a borda na largura e altura total do footer */
+    color: white;
+    font-family: "Poppins";
+    font-size: 14px;
+}
+
+footer h5 {
+    color: #f4a258;
+    font-weight: 500;
+}
+
+
+.icone-cieds {
+    width: 130px;
+    height: 60px;
+}
+
+.link-footer {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.link-footer :hover {
+    color: #f4a258;
+    /* Cor do texto dos links no hover */
+    opacity: 0.7;
+    /* Exemplo de efeito de hover: torna a imagem ligeiramente transparente */
+    transition: color 0.3s, opacity 0.3s;
+    /* Suaviza a transição */
+}
+
+.text-center {
+    margin: 0px;
+}

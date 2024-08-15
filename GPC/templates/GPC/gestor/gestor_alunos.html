@@ -1,0 +1,29 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>Lista de Alunos</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Matrícula</th>
+                    <th>Curso</th>
+                    <th>Semestre</th>
+                    <th>Data de Nascimento</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for aluno in alunos %}
+                    <tr>
+                        <td>{{ aluno.matricula }}</td>
+                        <td>{{ aluno.curso }}</td>
+                        <td>{{ aluno.semestre }}</td>
+                        <td>{{ aluno.data_de_nascimento }}</td>
+                        <td>{{ aluno.user }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

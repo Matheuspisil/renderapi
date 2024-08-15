@@ -1,0 +1,88 @@
+/* Reseta as margens e paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  caret-color: #6c757d;
+  /* | */
+}
+
+/* Estilo do header */
+header.main-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #c5c3c3;
+  padding: 10px 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Estilo do main */
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Estilo do footer */
+footer {
+  background-color: #ffffff;
+  border-top: 1px solid #ffffff;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* editei aqui, talvez estejam inutilizaveis */
+.img-fluid.logo-footer {
+  width: 50%;
+  /* Define a largura da imagem */
+  height: auto;
+  /* Mantém a proporção */
+  max-width: 100%;
+  /* Limite máximo de largura */
+  object-fit: contain;
+  /* Mantem a proporção e a menor dimensão cabe dentro do contêiner */
+}
+
+.img-fluid.footer-br {
+  max-width: 80vh;
+  min-height: 13vh;
+  margin-top: -30%;
+  /* Ajuste o espaçamento superior da imagem */
+  margin-left: 190%;
+  /* Ajuste o espaçamento à direita da imagem */
+}
+
+/* realce ao link atual da navbar */
+.active-nav-item {
+  font-weight: bold;
+  color: #007bff;
+}
+
+
+.footer-img-wrapper img {
+  overflow: hidden;
+  /* Para esconder qualquer parte da imagem que ultrapasse o contêiner */
+  width: calc(100% + 90px);
+  /* Aumenta a largura da imagem em 20px além do contêiner */
+  margin-left: -45px;
+  /* Compensa metade do aumento para manter centrado */
+  margin-right: -45px;
+  /* Compensa metade do aumento para manter centrado */
+}
+
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}

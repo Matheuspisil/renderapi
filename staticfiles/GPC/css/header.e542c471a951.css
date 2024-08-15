@@ -1,0 +1,28 @@
+/* Estilo do Header */
+header.main-header {
+    background-color: #013C5A;
+    padding: 10px;
+    width: 100%;
+    font-family: "Poppins";
+    color: white;
+}
+
+.nav-item .nav-link {
+    color: #f4a258;
+}
+
+.nav-item .nav-link:hover,
+.navbar-brand:hover {
+    color: #ffffff;
+}
+
+
+.active-nav-item,
+.navbar-brand {
+    font-weight: bold;
+    color: #f4a258;
+}
+
+.navbar-nav {
+    gap: 15px;
+}

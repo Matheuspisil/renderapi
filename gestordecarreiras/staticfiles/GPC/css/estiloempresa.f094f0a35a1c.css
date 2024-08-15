@@ -1,0 +1,179 @@
+@import url("style.fda64c5ceb9d.css");
+@import url("padraobotao.f8bc5328e52a.css");
+@import url("padraoletters.e838c94347f9.css");
+
+/*Área da Empresa*/
+.main-area-empresa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f3f3;
+    margin: 0;
+    min-height: 65vh;
+    padding: 20px;
+
+    border: 1px solid black; 
+    border-radius: 20px; 
+    width: 60%;
+    max-width: 800px;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.area-empresa-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.area-empresa-button-rounded {
+    background-color: #ecf47a;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 15px 20px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 20px;
+    width: 220px;
+    height: 80px;
+    cursor: pointer;
+}
+
+.area-empresa-button-rounded i {
+    margin-right: 10px;
+}
+
+.area-empresa-button-rounded:hover {
+    background-color: #eeea24;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1200px) {
+    h1 {
+        font-size: 48px;
+        text-indent: -30px;
+    }
+
+    h2 {
+        font-size: 24px;
+        text-indent: -30px;
+    }
+
+    h3 {
+        font-size: 18px;
+        text-indent: -30px;
+    }
+
+    h4 {
+        font-size: 14px;
+        text-indent: -30px;
+    }
+
+    p {
+        font-size: 11px;
+        text-indent: -30px;
+    }
+
+    .area-empresa-button-rounded {
+        width: calc(33% - 20px);
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 900px) {
+    h1 {
+        font-size: 36px;
+        text-indent: -25px;
+    }
+
+    h2 {
+        font-size: 20px;
+        text-indent: -25px;
+    }
+
+    h3 {
+        font-size: 16px;
+        text-indent: -25px;
+    }
+
+    h4 {
+        font-size: 12px;
+        text-indent: -25px;
+    }
+
+    p {
+        font-size: 10px;
+        text-indent: -25px;
+    }
+
+    .navbar-nav .nav-item {
+        margin: 0;
+    }
+
+    .area-empresa-button-rounded {
+        width: calc(50% - 20px);
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 28px;
+        text-indent: -20px;
+    }
+
+    h2 {
+        font-size: 18px;
+        text-indent: -20px;
+    }
+
+    h3 {
+        font-size: 14px;
+        text-indent: -20px;
+    }
+
+    h4 {
+        font-size: 12px;
+        text-indent: -20px;
+    }
+
+    p {
+        font-size: 10px;
+        text-indent: -20px;
+    }
+
+    .navbar-nav .nav-item {
+        width: 100%;
+        text-align: center;
+    }
+
+    .area-empresa-button-rounded {
+        width: calc(100% - 20px);
+        min-width: 180px;
+    }
+}
+
+@media (min-width: 768px) {
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+    }
+}
+
+/* Esconder scrollbar em telas menores */
+@media (max-width: 767px) {
+    ::-webkit-scrollbar {
+        width: 0; /* esconder scrollbar */
+    }
+}

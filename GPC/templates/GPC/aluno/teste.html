@@ -1,0 +1,138 @@
+{% extends "GPC/pages/base.html" %}
+{% block title %}
+    Cadastro de Aluno
+{% endblock %}
+
+{% load custom_filters %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form id="multistep-form" method="POST">
+                    {% csrf_token %}
+                    <h2 class="mb-4">Cadastro de Aluno</h2>
+                    <span class="text-danger">* Obrigatórios</span>
+
+                    <!-- Etapa 1 -->
+                    <div class="step">
+                        <div class="form-group">
+                            <label for="first_name">Nome completo: <span class="text-danger">*</span></label>
+                            {{ user_form.first_name|add_class:"form-control" }}
+                            {% if user_form.first_name.errors or user_form.last_name.errors %}
+                                <div class="invalid-feedback">
+                                    {{ user_form.first_name.errors|join:", " }} {{ user_form.last_name.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="matricula">Matrícula: <span class="text-danger">*</span></label>
+                            {{ aluno_form.matricula|add_class:"form-control" }}
+                            {% if aluno_form.matricula.errors %}
+                                <div class="invalid-feedback">
+                                    {{ aluno_form.matricula.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Adicione os campos da primeira etapa aqui -->
+                        <button type="button" class="btn btn-primary nextBtn" onclick="nextStep(0)">Próximo</button>
+                    </div>
+
+                    <!-- Etapa 2 -->
+                    <div class="step">
+                        <div class="form-group">
+                            <label for="cpf">CPF: <span class="text-danger">*</span></label>
+                            {{ aluno_form.cpf|add_class:"form-control" }}
+                            {% if aluno_form.cpf.errors %}
+                                <div class="invalid-feedback">
+                                    {{ aluno_form.cpf.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="data_de_nascimento">Data de nascimento: <span class="text-danger">*</span></label>
+                            {{ aluno_form.data_de_nascimento|add_class:"form-control" }}
+                            {% if aluno_form.data_de_nascimento.errors %}
+                                <div class="invalid-feedback">
+                                    {{ aluno_form.data_de_nascimento.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Adicione os campos da segunda etapa aqui -->
+                        <button type="button" class="btn btn-secondary prevBtn" onclick="prevStep(1)">Anterior</button>
+                        <button type="button" class="btn btn-primary nextBtn" onclick="nextStep(1)">Próximo</button>
+                    </div>
+
+                    <!-- Etapa 3 -->
+                    <div class="step">
+                        <div class="form-group">
+                            <label for="curso">Curso: <span class="text-danger">*</span></label>
+                            {{ aluno_form.curso|add_class:"form-control" }}
+                            {% if aluno_form.curso.errors %}
+                                <div class="invalid-feedback">
+                                    {{ aluno_form.curso.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Adicione os campos da terceira etapa aqui -->
+                        <button type="button" class="btn btn-secondary prevBtn" onclick="prevStep(2)">Anterior</button>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+
+                <script>
+                    function showStep(step) {
+                        var steps = document.getElementsByClassName("step");
+                        for (var i = 0; i < steps.length; i++) {
+                            steps[i].style.display = "none";
+                        }
+                        steps[step].style.display = "block";
+                    }
+
+                    function nextStep(currentStep) {
+                        if (validateStep(currentStep)) {
+                            showStep(currentStep + 1);
+                        }
+                    }
+
+                    function prevStep(currentStep) {
+                        showStep(currentStep - 1);
+                    }
+
+                    function validateStep(step) {
+                        // Aqui você pode adicionar lógica de validação do formulário se necessário
+                        return true; // Retorne true se a validação passar, false caso contrário
+                    }
+
+                    document.addEventListener("DOMContentLoaded", function() {
+                        var steps = document.getElementsByClassName("step");
+                        showStep(0); // Mostra a primeira etapa inicialmente
+
+                        var nextBtns = document.getElementsByClassName("nextBtn");
+                        var prevBtns = document.getElementsByClassName("prevBtn");
+
+                        // Adiciona listeners para os botões Próximo e Anterior
+                        for (var i = 0; i < nextBtns.length; i++) {
+                            nextBtns[i].addEventListener("click", function() {
+                                var currentStep = parseInt(this.getAttribute("onclick").match(/\d+/)[0]);
+                                nextStep(currentStep);
+                            });
+                        }
+
+                        for (var i = 0; i < prevBtns.length; i++) {
+                            prevBtns[i].addEventListener("click", function() {
+                                var currentStep = parseInt(this.getAttribute("onclick").match(/\d+/)[0]);
+                                prevStep(currentStep);
+                            });
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+{% endblock %}

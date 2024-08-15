@@ -1,0 +1,22 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}Mentoria Solicitada{% endblock %}
+
+{% block content %}
+
+<section class="banner">
+    <div class="container">
+        <h1>Solicitando <span style="color: #ffae00;">mentoria</span></h1>
+        <hr>
+        <h4>Mentoria solicitada com: {{mentoria.mentor.user.first_name}} </h4>
+        <h6>Consultando disponibilidade, por favor aguarde a confirmação por email.</h6>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+</section>
+
+{% endblock %}

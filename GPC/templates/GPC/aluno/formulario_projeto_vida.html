@@ -1,0 +1,221 @@
+{% extends "GPC/pages/base.html" %}
+
+{% load static %}
+
+{% block title %}
+Formulário de Currículo
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'GPC/css/estiloaluno.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="banner">
+    <div class="container">
+        <div class="conteudo-perfil">
+
+            <form action="" method="POST" target="_blank" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h2 class="mb-4">Formulário de Currículo</h2>
+                <h4 class="text-danger">* Campos obrigatórios</h4>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" class="form-control" value="{{ user.full_name }}" name="nome" id="nome" readonly required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="area_interesse" class="form-label">Área de interesse <span class="text-danger">*</span></label>
+                        <select class="form-select" id="area_interesse" name="area_interesse" required>
+                            <option value="" selected disabled>Selecione a área de interesse</option>
+                            <optgroup label="Matemática">
+                                <option value="analise_numerica">Análise Numérica</option>
+                                <option value="estatistica">Estatística</option>
+                                <option value="pesquisa_operacional">Pesquisa Operacional</option>
+                            </optgroup>
+                            <optgroup label="Ciência de Dados">
+                                <option value="big_data">Big Data</option>
+                                <option value="machine_learning">Machine Learning</option>
+                                <option value="visualizacao_dados">Visualização de Dados</option>
+                            </optgroup>
+                            <optgroup label="Ciência da Computação">
+                                <option value="algoritmos">Algoritmos e Estruturas de Dados</option>
+                                <option value="seguranca_informacao">Segurança da Informação</option>
+                                <option value="desenvolvimento_software">Desenvolvimento de Software</option>
+                            </optgroup>
+                            <optgroup label="Física">
+                                <option value="fisica_computacional">Física Computacional</option>
+                                <option value="modelagem_simulacao">Modelagem e Simulação</option>
+                                <option value="inteligencia_artificial">Inteligência Artificial Aplicada</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endereco" class="form-label">Endereço</label>
+                        <input type="text" class="form-control" name="endereco" id="endereco" value="{{aluno.localidade}}" readonly required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="telefone" class="form-label">Telefone</label>
+                                <input type="tel" class="form-control" name="telefone" id="telefone" value="{{aluno.telefone}}" readonly required>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" name="email" id="email" value="{{user.email}}" readonly required>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="site" class="form-label">Site</label>
+                                <input type="url" class="form-control" name="site" id="site">
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="linkedin" class="form-label">Linkedin</label>
+                                <input type="url" class="form-control" name="linkedin" id="linkedin">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="sobre" class="form-label">Sobre <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="sobre" name="sobre" rows="3" placeholder="Sobre você"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="competencias" class="form-label">Principais Competências <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="competencias" name="competencias" rows="3" placeholder="Descreva suas principais competências"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="experiencia" class="form-label">Experiência <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="experiencia" name="experiencia" rows="3" placeholder="Detalhe sua experiência profissional"></textarea>
+                    </div>
+                    <br>
+
+                    <label for="formacao">Formação Acadêmica</label><span class="text-danger">*</span>
+                    <div id="formacao_fields">
+                        <div class="formacao_field">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <input type="text" class="form-control" name="formacao_academica" placeholder="Nome da Formação" required>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="instituicao" placeholder="Instituição" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="data_inicio">Data de Início</label>
+                                    <input type="date" class="form-control" name="data_inicio" required>
+                                </div>
+                                <div class="col">
+                                    <label for="data_termino">Data de Término</label>
+                                    <input type="date" class="form-control" name="data_termino" disabled>
+                                </div>
+                                <div class="col-auto align-self-center">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="atual" id="atual" onclick="toggleDataTermino(this)" checked>
+                                        <label class="form-check-label" for="atual">Atual</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <textarea class="form-control" name="descricao" placeholder="Descrição" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <label for="licencas_certificados" class="form-label">Licenças e Certificados</label>
+                        <textarea class="form-control" id="licencas_certificados" name="licencas_certificados" rows="3" placeholder="Detalhe suas licenças e certificados"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="projetos" class="form-label">Projetos</label>
+                        <textarea class="form-control" id="projetos" name="projetos" rows="3" placeholder="Descreva os projetos em que trabalhou"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="trabalho_voluntario" class="form-label">Trabalho Voluntário</label>
+                        <textarea class="form-control" id="trabalho_voluntario" name="trabalho_voluntario" rows="3" placeholder="Detalhe seu trabalho voluntário"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="publicacoes" class="form-label">Publicações</label>
+                        <textarea class="form-control" id="publicacoes" name="publicacoes" rows="3" placeholder="Liste suas publicações"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="cursos" class="form-label">Cursos Realizados</label>
+                        <textarea class="form-control" id="cursos" name="cursos" rows="3" placeholder="Descreva os cursos que realizou"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idiomas" class="form-label">Idiomas</label>
+                        <textarea class="form-control" id="idiomas" name="idiomas" rows="3" placeholder="Informe os idiomas que você fala"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interesses" class="form-label">Interesses</label>
+                        <textarea class="form-control" id="interesses" name="interesses" rows="3" placeholder="Descreva seus interesses"></textarea>
+                    </div><br>
+
+                    <div class="form-group">
+                        <label for="curriculo" class="form-label">Currículo</label>
+                        <input type="file" class="form-control-file" id="curriculo" name="curriculo" accept="application/pdf">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-3">
+                    <button class="btn btn-primary btn-icon" type="submit"><i class="fas fa-paper-plane"></i> Gerar Projeto</button>
+                    <button class="btn btn-secondary btn-icon" type="reset"><i class="fas fa-eraser"></i> Limpar campos</button>
+                    <button class="btn btn-danger btn-icon" type="submit"><i class="fas fa-file-pdf"></i> Gerar PDF</button>
+                    <a href="{% url 'aluno-area' %}" class="btn">Voltar</a>
+                </div>
+            </form>
+
+            <script>
+                function toggleDataTermino(checkbox) {
+                    var row = checkbox.parentNode.parentNode.parentNode;
+                    var dataTerminoInput = row.querySelector('input[name="data_termino"]');
+                    if (checkbox.checked) {
+                        dataTerminoInput.disabled = true;
+                        dataTerminoInput.value = '';
+                    } else {
+                        dataTerminoInput.disabled = false;
+                    }
+                }
+
+                function addInput(containerId) {
+                    var container = document.getElementById(containerId);
+                    var inputGroup = document.createElement('div');
+                    inputGroup.classList.add('input-group', 'mb-3');
+                    inputGroup.innerHTML = `
+                <textarea class="form-control" name="${containerId}_input[]" rows="3" placeholder="Adicione aqui"></textarea>
+                <button class="btn btn-outline-secondary" type="button" onclick="removeInput(this)">Remover</button>
+            `;
+                    container.appendChild(inputGroup);
+                }
+
+                function removeInput(button) {
+                    button.parentNode.remove();
+                }
+            </script>
+        </div>
+    </div>
+</section>
+{% endblock%}

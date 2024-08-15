@@ -1,0 +1,47 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}
+Área da Empresa
+{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'GPC/css/estiloaluno.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-7">
+                <h1 class="h1-area-do-estudante"><b>Área da Empresa</b></h1>
+                <h3>Olá, {{empresa.razao_social}}!</h3>
+                <h4>Junte-se a nós para construir um futuro brilhante.</h4>
+
+                <button class=" button-notificacao">
+                    <img src="{% static 'GPC/images/notificacao.png' %}" alt="Ícone notificação">
+                    Você tem 1 notificação
+                </button>
+            </div>
+            <div class="col-5">
+                <img class="foto-banner" src="{% static 'GPC/images/banner-empresa.png' %}" alt="Banner alunos">
+            </div>
+        </div>
+
+        <p class="alerta-projetovida">
+            Está em busca de talentos que compartilhem sua visão e valores?<br>
+            <a href="{% url 'create_vaga' %}">Cadastre suas oportunidades de emprego hoje mesmo</a>
+            <img class="icon-seta" src="{% static 'GPC/images/seta.png' %}" alt="Ícone seta">
+        </p>
+
+        <br>
+
+    </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

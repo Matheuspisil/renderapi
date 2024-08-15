@@ -1,0 +1,45 @@
+.button-pink {
+    background-color: #ff8aef;
+    color: white;
+  }
+  
+  .button-orange {
+    background-color: #ffc555;
+    color: white;
+  }
+  
+  .button-yellow {
+    background-color: #ecf47a;
+    color: black;
+  }
+  
+  .button-green {
+    background-color: #beff8b;
+    color: black;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center; /* Alinha os botões ao centro horizontalmente */
+    gap: 5px; /* Define um espaço pequeno entre os botões */
+  }
+  
+  .button-pink,
+  .button-orange,
+  .button-yellow,
+  .button-green {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    width: 130px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    display: flex;
+    align-items: center; /* Certifique-se de que o texto está centralizado verticalmente */
+    justify-content: center; /* Certifique-se de que o texto está centralizado horizontalmente */
+  }
+  

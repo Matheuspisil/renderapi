@@ -1,0 +1,47 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %} Page Configuration List {% endblock %}
+
+{% block content %}
+<h1>Page Configurations</h1>
+
+<p>Total Configurations: {{ configurations.count }}</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Page Name</th>
+            <th>Background Color</th>
+            <th>Text Color</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for config in configurations %}
+        <tr>
+            <form method="post" action="{% url 'update_page_configuration' config.id %}">
+                {% csrf_token %}
+                <td>{{ config.page_name }}</td>
+                <td>
+                    <input type="color" name="background_color" value="{{ config.background_color }}" required>
+                </td>
+                <td>
+                    <input type="color" name="text_color" value="{{ config.text_color }}" required>
+                </td>
+                <td>
+                    <button type="submit">Save</button>
+                </td>
+            </form>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if configurations.count == 0 %}
+<p>No configurations found.</p>
+{% endif %}
+
+<form method="post" action="{% url 'page_configuration_list' %}">
+    {% csrf_token %}
+    <button type="submit">Reset to Default</button>
+</form>
+{% endblock %}

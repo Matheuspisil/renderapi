@@ -1,0 +1,26 @@
+<!-- GPC/templates/GPC/empresa_dashboard.html -->
+{% extends "GPC/pages/base.html" %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>Lista de Empresas</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CNPJ</th>
+                    <th>Site</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for empresa in empresas %}
+                    <tr>
+                        <td>{{ empresa.razao_social }}</td>
+                        <td>{{ empresa.cnpj }}</td>
+                        <td>{{ empresa.user }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,63 @@
+
+/* Reseta as margens e paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+/* Estilo do header */
+header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 10px 0;
+}
+
+/* Estilo do main */
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Estilo do footer */
+footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #e7e7e7;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+
+.botao-verde {
+  background-color: #008000;
+  color: #ffffff;
+}
+
+.botao-amarelo {
+    background-color: #ddec0a;
+    color: #ffffff;
+  }
+
+  .botao-azul {
+    background-color: #062092;
+    color: #ffffff;
+  }
+  

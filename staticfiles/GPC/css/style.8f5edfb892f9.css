@@ -1,0 +1,77 @@
+
+/* Reseta as margens e paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+/* Estilo do header */
+header.main-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 10px 0;
+}
+
+/* Estilo do main */
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Estilo do footer */
+footer {
+    background-color: #ffffff;
+    border-top: 1px solid #ffffff;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.img-fluid.logo-footer {
+    width: 50%; /* Define a largura da imagem */
+    height: auto; /* Mantém a proporção */
+    max-width: 100%; /* Limite máximo de largura */
+    object-fit: contain; /* Mantem a proporção e a menor dimensão cabe dentro do contêiner */
+  }
+  .img-fluid.footer-br {
+    max-width: 80vh;
+    min-height: 13vh;
+    margin-top: -30%; /* Ajuste o espaçamento superior da imagem */
+    margin-left: 190%; /* Ajuste o espaçamento à direita da imagem */
+  }
+  
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+
+.botao-verde {
+  background-color: #008000;
+  color: #ffffff;
+}
+
+.botao-amarelo {
+    background-color: #ddec0a;
+    color: #ffffff;
+  }
+
+  .botao-azul {
+    background-color: #062092;
+    color: #ffffff;
+  }
+  

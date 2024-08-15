@@ -1,0 +1,139 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}
+Cadastro de Vagas
+{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'GPC/css/estiloaluno.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="banner">
+    <div class="container">
+        <div class="conteudo-perfil">
+
+            <form method="POST">
+                {% csrf_token %}
+              
+              <h2 class="conteudo-perfil-h2"><b>Nova Vaga</b></h2>
+
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="id_titulo" name="titulo" placeholder="Título da Vaga">
+                </div>
+
+                <div class="mb-3">
+                    <textarea class="form-control" id="id_descricao" name="descricao" rows="3" placeholder="Descrição da Vaga"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    {{ form.tipo_vaga.label_tag }}
+                    {{ form.tipo_vaga }}
+                </div>
+
+                <div class="mb-3">
+                    <textarea class="form-control" id="id_requisitos" name="requisitos" rows="3" placeholder="Requisitos"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="data_encerramento">Data de Encerramento:</label>
+                    <input type="date" class="form-control" id="id_data_encerramento" name="data_encerramento">
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input class="form-check-input" type="checkbox" id="id_ativo" name="ativo">
+                    <label class="form-check-label" for="id_ativo">Ativo</label>
+                </div>
+
+                <div class="mb-3">
+                    <label class="mb-2">Autoconhecimento Desejável</label><br>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_etica" name="etica" value="true">
+                        <label class="form-check-label" for="id_etica">Ética</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_autoeficacia" name="autoeficacia" value="true">
+                        <label class="form-check-label" for="id_autoeficacia">Autoeficácia</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_trabalho_equipe" name="trabalho_equipe" value="true">
+                        <label class="form-check-label" for="id_trabalho_equipe">Trabalho em Equipe</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_pens_criativo" name="pens_criativo" value="true">
+                        <label class="form-check-label" for="id_pens_criativo">Pensamento Criativo</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_pens_analitico" name="pens_analitico" value="true">
+                        <label class="form-check-label" for="id_pens_analitico">Pensamento Analítico</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_res_problemas" name="res_problemas" value="true">
+                        <label class="form-check-label" for="id_res_problemas">Resolução de Problemas</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_comunicacao" name="comunicacao" value="true">
+                        <label class="form-check-label" for="id_comunicacao">Comunicação</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_adaptabilidade" name="adaptabilidade" value="true">
+                        <label class="form-check-label" for="id_adaptabilidade">Adaptabilidade</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_persistencia" name="persistencia" value="true">
+                        <label class="form-check-label" for="id_persistencia">Persistência</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_agilidade" name="agilidade" value="true">
+                        <label class="form-check-label" for="id_agilidade">Agilidade</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_gestao" name="gestao" value="true">
+                        <label class="form-check-label" for="id_gestao">Gestão</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_orient_cliente" name="orient_cliente" value="true">
+                        <label class="form-check-label" for="id_orient_cliente">Orientação ao Cliente</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_linguagens" name="linguagens" value="true">
+                        <label class="form-check-label" for="id_linguagens">Linguagens</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_programacao" name="programacao" value="true">
+                        <label class="form-check-label" for="id_programacao">Programação</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_ia" name="ia" value="true">
+                        <label class="form-check-label" for="id_ia">Inteligência Artificial</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_bigdata" name="bigdata" value="true">
+                        <label class="form-check-label" for="id_bigdata">Big Data</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_ciberseg" name="ciberseg" value="true">
+                        <label class="form-check-label" for="id_ciberseg">Cibersegurança</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_redes" name="redes" value="true">
+                        <label class="form-check-label" for="id_redes">Redes</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="checkbox" id="id_qualidade" name="qualidade" value="true">
+                        <label class="form-check-label" for="id_qualidade">Qualidade</label>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-primary me-md-2">Salvar</button>
+                    <button type="button" class="btn btn-secondary" onclick="history.back()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

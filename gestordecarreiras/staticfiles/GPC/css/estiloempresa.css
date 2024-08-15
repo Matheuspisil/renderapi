@@ -1,0 +1,31 @@
+/*Área da Empresa*/
+
+.area-empresa-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .area-empresa-button-rounded {
+    background-color: #e75d72;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 20px;
+    width: 220px;
+    height: 80px;
+    cursor: pointer;
+  }
+  
+  .area-empresa-button-rounded i {
+    margin-right: 10px;
+  }
+  
+  .area-empresa-button-rounded:hover {
+    background-color: #f55252;
+  }

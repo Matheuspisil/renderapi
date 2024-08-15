@@ -1,0 +1,33 @@
+/*Área do Mentor*/
+
+.area-mentor-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .area-mentor-button-rounded {
+    background-color: #e0c68d;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 20px;
+    width: 220px;
+    height: 80px;
+    cursor: pointer;
+  }
+  
+  .area-mentor-button-rounded i {
+    margin-right: 10px;
+  }
+  
+  .area-mentor-button-rounded:hover {
+    background-color: #ad9e7b;
+  }
+  
+  

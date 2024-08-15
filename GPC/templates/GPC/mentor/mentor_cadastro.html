@@ -1,0 +1,177 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}
+Cadastro de Mentor
+{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'GPC/css/login_cadastro.css' %}">
+{% endblock %}
+
+{% load custom_filters %}
+
+{% block content %}
+<section class="banner">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <h2 class="mb-4">
+                        Cadastro de Mentor
+                    </h2>
+                    <p class="texto-obrigatorio">* Campos obrigatórios</p>
+
+                    <!-- etapa 1 -->
+                    <div class="step">
+                        <div class="form-group">
+                            <label for="email">Email: <span class="text-danger">*</span></label>
+                            {{ user_form.email|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password1">Senha: <span class="text-danger">*</span></label>
+                            {{ user_form.password1|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password2">Confime a senha: <span class="text-danger">*</span></label>
+                            {{ user_form.password2|add_class:"form-control" }}
+                        </div><br>
+
+                        <button type="button" class="btn btn-primary nextBtn" onclick="nextStep(0)">Próximo</button>
+                    </div>
+
+                    <!-- etapa 2 -->
+                    <div class="step">
+                        <div class="form-group">
+                            <label for="first_name">Nome completo: <span class="text-danger">*</span></label>
+                            {{ user_form.first_name|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cpf">CPF: <span class="text-danger">*</span></label>
+                            {{ mentor_form.cpf|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="data_de_nascimento">Data de nascimento: <span
+                                    class="text-danger">*</span></label>
+                            {{ mentor_form.data_de_nascimento|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sexo">Sexo:</label>
+                            {{ mentor_form.sexo|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefone">Telefone: <span class="text-danger">*</span></label>
+                            {{ mentor_form.telefone|add_class:"form-control" }}
+                        </div><br>
+
+                        <button type="button" class="btn btn-secondary prevBtn" onclick="prevStep(1)">Anterior</button>
+                        <button type="button" class="btn btn-primary nextBtn" onclick="nextStep(1)">Próximo</button>
+                    </div>
+
+                    <!-- step 3 -->
+                    <div class="step">
+                        <div class="form-group">
+                            <label for="cep">CEP:</label>
+                            {{ mentor_form.cep|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endereco">Endereço: <span class="text-danger">*</span></label>
+                            {{ mentor_form.endereco|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numero">Número:</label>
+                            {{ mentor_form.numero|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="complemento">Complemento:</label>
+                            {{ mentor_form.complemento|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bairro">Bairro:</label>
+                            {{ mentor_form.bairro|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cidade">Cidade:</label>
+                            {{ mentor_form.cidade|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="estado">Estado:</label>
+                            {{ mentor_form.estado|add_class:"form-control" }}
+                        </div><br>
+
+                        <button type="button" class="btn btn-secondary prevBtn" onclick="prevStep(2)">Anterior</button>
+                        <button type="button" class="btn btn-primary nextBtn" onclick="nextStep(2)">Próximo</button>
+                    </div>
+
+                    <!-- step 4 -->
+                    <div class="step">
+                        <div class="form-group">
+                            <label for="profissao">Profissão:</label>
+                            {{ mentor_form.profissao|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experiencia_profissional">Experiência Profissional:</label>
+                            {{ mentor_form.experiencia_profissional|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="site">Site:</label>
+                            {{ mentor_form.site|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="area_mentoria">Área de Mentoria: <span class="text-danger">*</span></label>
+                            {{ mentor_form.area_mentoria|add_class:"form-control" }}
+                            {% if mentor_form.area_mentoria.errors %}
+                            <div class="invalid-feedback">
+                                {{ mentor_form.area_mentoria.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div><br>
+
+                        <div class="form-group form-check">
+                            <div class="termos">
+                                <input type="checkbox" class="form-check-input" id="termos-checkbox"
+                                    name="termos-checkbox" required>
+                                <label class="form-check-label" for="termos-checkbox" id="texto-termos">
+                                    <span class="text-danger">*</span> Li e concordo com os <a href="#">Termos de
+                                        Uso</a> e
+                                    a
+                                    <a href="#">Política de Privacidade</a> deste site.
+                                </label>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="d-flex justify-content-between mt-3">
+                            <button type="button" class="btn btn-secondary prevBtn"
+                                onclick="prevStep(3)">Anterior</button>
+                            <button type="submit" class="btn btn-primary"> Cadastrar </button>
+
+                            <a href="{% url 'index' %}" class="btn btn-danger">Cancelar</a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

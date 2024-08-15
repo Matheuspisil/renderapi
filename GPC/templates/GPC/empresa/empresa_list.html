@@ -1,0 +1,39 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}
+Lista de Empresas
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>Lista de Empresas</h2>
+        <a href="{% url 'create_empresa' %}" class="btn btn-primary mb-3">Adicionar Nova Empresa</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CNPJ</th>
+                    <th>Razão Social</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for empresa in empresas %}
+                    <tr>
+                        <td>{{ empresa.nome }}</td>
+                        <td>{{ empresa.cnpj }}</td>
+                        <td>{{ empresa.razao_social }}</td>
+                        <td>
+                            <a href="{% url 'index' %}" class="btn btn-info btn-sm">Detalhes</a>
+                            <a href="{% url 'update_empresa' %}" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="{% url 'delete_empresa' %}" class="btn btn-danger btn-sm">Deletar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-secondary" onclick="history.back()">Voltar</button>
+        </div>
+    </div>
+{% endblock %}

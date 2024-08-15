@@ -1,0 +1,45 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}
+Lista de Vagas de Estágio
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>Lista de Vagas de Estágio</h2>
+
+        <a href="{% url 'create_vaga' %}" class="btn btn-primary mb-3">Adicionar Nova Vaga</a>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Empresa</th>
+                    <th>Data de Publicação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vaga in vagas %}
+                    <tr>
+                        <td>{{ vaga.titulo }}</td>
+                        <td>{{ vaga.empresa.nome }}</td>
+                        <td>{{ vaga.data_publicacao }}</td>
+                        <td>
+                            <a href="{% url 'vaga_detail' vaga.slug %}" class="btn btn-info btn-sm">Detalhes</a>
+                            <a href="{% url 'update_vaga' vaga.slug %}" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="{% url 'delete_vaga' vaga.slug %}" class="btn btn-danger btn-sm">Deletar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">Sem vagas para mostrar</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-secondary" onclick="location.href='{% url 'empresa_vaga_list' empresa.pk %}'">Voltar</button>
+        </div>
+    </div>
+{% endblock %}
