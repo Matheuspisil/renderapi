@@ -1,5 +1,5 @@
 from pathlib import Path
-import dj_database_url
+
 import os
 from dotenv import load_dotenv
 
@@ -21,11 +21,12 @@ LOGIN_REDIRECT_URL = 'index'
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY", "tec21boss")
+SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY='admin1234'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG","False").lower() == "True"
-
+DEBUG=True
+ALLOWED_HOSTS = ['dpg-cqv814jtq21c73a3acgg-a.oregon-postgres.render.com','https://renderapi-grdq.onrender.com']
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost 127.0.0.1").split(" ")
 
 
@@ -112,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "pt-br"
 
 TIME_ZONE = 'America/Sao_Paulo'
 
@@ -140,6 +141,7 @@ if not DEBUG:
     
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 
