@@ -26,7 +26,6 @@ SECRET_KEY='admin1234'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG=True
-ALLOWED_HOSTS = ['https://renderapi-grdq.onrender.com/','https://renderapi-grdq.onrender.com']
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS","https://renderapi-grdq.onrender.com/", "localhost 127.0.0.1").split(" ")
 
 
