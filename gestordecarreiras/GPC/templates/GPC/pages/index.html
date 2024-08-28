@@ -1,0 +1,76 @@
+{% extends 'GPC/pages/base.html' %}
+
+{% block title %} ProCarreiras {% endblock title %}
+
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'GPC/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="banner banner1">
+  <h1 class="h1-index">
+    <b>Plataforma de Gestão de Carreiras</b>
+  </h1>
+
+  <button class="button-orange">
+    Descubra mais <img src="{% static 'GPC/images/seta.png' %}" alt="Ícone Seta">
+  </button>
+</div>
+
+<div class="banner banner2">
+  <div class="ml-auto">
+    <h2 class="text-end"><b>“Queremos transformar o mundo por meio da matemática.”</b></h2>
+    <p class="text-end">Marcelo Viana - Diretor-Geral do IMPA</p>
+  </div>
+
+
+  <h2 class="text-start">
+    <b>
+      Uma nova ferramenta inovadora cujo objetivo é proporcionar oportunidades de parceria e networking
+      no mercado de trabalho.
+    </b>
+  </h2>
+</div>
+<div class="banner banner3">
+
+  <h2 class="text-center"><b>Faça parte da plataforma</b></h2>
+
+  <div class="mentor-cards-container">
+
+    <div class="mentor-card">
+      <h3 class="card-titulo"><b><a href="{% url 'formulario-aluno' %}" }>Estudantes</a></b></h3>
+      <div class="card-content">
+        <p><img src="{% static 'GPC/images/curriculo.png' %}" alt="Ícone Seta">Crie um plano de vida</p>
+        <p><img src="{% static 'GPC/images/oportunidades.png' %}" alt="Ícone Seta">Concorra a vagas</p>
+        <p><img src="{% static 'GPC/images/mentoria.png' %}" alt="Ícone Seta">Mentores profissionais</p>
+      </div>
+    </div>
+
+    <div class="mentor-card">
+      <h3 class="card-titulo"><b><a href="{% url 'mentor_cadastro' %}" }>Mentores</a></b></h3>
+      <div class="card-content">
+        <p><img src="{% static 'GPC/images/curriculo.png' %}" alt="Ícone Seta">Crie um plano de vida</p>
+        <p><img src="{% static 'GPC/images/oportunidades.png' %}" alt="Ícone Seta">Torne-se referência</p>
+        <p><img src="{% static 'GPC/images/mentoria.png' %}" alt="Ícone Seta">Auxilie nossos alunos</p>
+      </div>
+    </div>
+
+    <div class="mentor-card">
+      <h3 class="card-titulo"><b><a href="{% url 'create_empresa' %}" }>Empresas</a></b></h3>
+      <div class=" card-content">
+        <p><img src="{% static 'GPC/images/curriculo.png' %}" alt="Ícone Seta">Cadastre suas vagas</p>
+        <p><img src="{% static 'GPC/images/oportunidades.png' %}" alt="Ícone Seta">Torne-se parceiro</p>
+        <p><img src="{% static 'GPC/images/mentoria.png' %}" alt="Ícone Seta">Encontre novos profissionais</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+{% endblock content %}

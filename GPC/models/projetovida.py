@@ -131,3 +131,9 @@ class Estudo(models.Model):
     Kanban = models.IntegerField(default=0)
     Pomodoro = models.IntegerField(default=0)
     Ivy_Lee = models.IntegerField(default=0)
+
+class PlanejamentoParametros(models.Model):
+    GTD = models.IntegerField(default=0)
+    Kanban = models.IntegerField(default=0)
+    Pomodoro = models.IntegerField(default=0)
+    Ivy_Lee = models.IntegerField(default=0)

@@ -1,0 +1,22 @@
+databases:
+  - name: gestordecarreiras
+    plan: free
+    databaseName: gestordecarreiras
+    user: gestordecarreiras_user
+
+services:
+  - type: web
+    plan: free
+    name: gestordecarreiras
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn gestordecarreiras.wsgi:application -k uvicorn.workers.UvicornWorker"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: gestordecarreiras
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4

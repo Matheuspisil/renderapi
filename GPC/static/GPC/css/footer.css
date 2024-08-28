@@ -17,9 +17,13 @@ footer h5 {
     font-weight: 500;
 }
 
+.icone-rede-social {
+    width: 30px;
+    height: 30px;
+}
 
 .icone-cieds {
-    width: 130px;
+    width: 170px;
     height: 60px;
 }
 
@@ -28,10 +32,10 @@ footer h5 {
     text-decoration: none;
 }
 
-.link-footer :hover {
+.link-footer:hover {
     color: #f4a258;
-    /* Cor do texto dos links no hover */
-    opacity: 0.7;
+    text-decoration: none;
+    font-weight: 400;
     /* Exemplo de efeito de hover: torna a imagem ligeiramente transparente */
     transition: color 0.3s, opacity 0.3s;
     /* Suaviza a transição */
@@ -39,4 +43,16 @@ footer h5 {
 
 .text-center {
     margin: 0px;
+}
+
+a.link-footer-redesocial {
+    text-decoration: none;
+}
+
+.link-footer-redesocial {
+    margin-right: 5px;
+}
+
+.redes-sociais {
+    margin-top: 10px;
 }

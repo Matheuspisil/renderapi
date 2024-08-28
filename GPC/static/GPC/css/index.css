@@ -9,30 +9,30 @@
 }
 
 .banner1 {
-    background-color: #BDD4CE;
+    background-color: #f4c058;
     gap: 10px;
 }
 
 .banner2 {
-    background-color: #708C69;
+    background-color: #013C5A;
     gap: 50px;
+    color: #BDD4CE;
 }
 
 .banner3 {
-    background-color: #BDD4CE;
+    background-color: #1082a4;
 }
 
 
-.button-orange {
-    font-family: 'Arial', sans-serif;
+.button-coletivo {
+    font-family: 'Poppins', sans-serif;
     font-size: 16px;
     font-weight: 600;
     padding: 10px 20px;
-    width: 200px;
-    border: none;
+    width: 420px;
+    border: 1.5px solid #000000;
     cursor: pointer;
     text-align: center;
-    border: 1px solid #000000;
     border-radius: 30px;
     display: flex;
     align-items: center;
@@ -40,9 +40,42 @@
     color: #000000;
     margin-left: 50px;
     margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: .2s transform ease-in-out;
+    will-change: transform;
+    z-index: 0;
 }
 
-.button-orange img {
+.button-coletivo::after {
+    background-color: #708C69;
+    border-radius: 30px;
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-100%, 0) rotate(10deg);
+    transform-origin: top left;
+    transition: .4s transform ease-out;
+    will-change: transform;
+    z-index: -1;
+}
+
+.button-coletivo:hover::after {
+    transform: translate(0, 0);
+}
+
+.button-coletivo:hover {
+    color: rgb(0, 0, 0);
+    transform: scale(1.05);
+    will-change: transform;
+}
+
+
+.button-coletivo img {
     height: 20px;
     width: 20px;
     margin-left: 10px;
@@ -82,12 +115,12 @@ h2.text-start {
 
 .mentor-card {
     background-color: #fff;
-    border-radius: 20px;
+    border-radius: 10px;
     border-style: solid;
     border-width: 1px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 350px;
-    height: 300px;
+    height: 400px;
     padding-top: 15px;
     text-align: left;
     justify-content: center;
@@ -107,6 +140,19 @@ h2.text-start {
     width: 25px;
 }
 
+.card-content ul {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.card-content ul li {
+    color: #000000;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: left;
+}
+
 .card-content p {
     color: #000000;
     margin-bottom: 20px;
@@ -124,11 +170,19 @@ h2.text-start {
     text-indent: 0px;
     text-align: left;
     font-size: 30px;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-left: 40px;
     text-decoration: underline;
 }
 
 .card-titulo a {
     color: #000000;
+}
+
+.card-titulo a:hover {
+    color: #f4a258;
+}
+
+.span-amarelo {
+    color: #f4a258;
 }

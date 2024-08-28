@@ -1,0 +1,115 @@
+{% extends "GPC/pages/base.html" %}
+
+{% load static %}
+
+{% block title %}
+Minhas Candidaturas
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'GPC/css/estiloaluno.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="banner">
+    <div class="container">
+        {% if candidaturas %}
+        <h2>Minhas Candidaturas</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Vaga</th>
+                    <th>Empresa</th>
+                    <th>Status</th>
+                    <th>Data de Solicitação</th>
+                    <th>Data de Decisão</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for candidatura in candidaturas %}
+                <tr>
+                    <td>{{ candidatura.vaga.titulo }}</td>
+                    <td>{{ candidatura.vaga.empresa.razao_social }}</td>
+                    <td>{{ candidatura.status }}</td>
+                    <td>{{ candidatura.data_solicitacao }}</td>
+
+                    {% if candidatura.data_decisao %}
+                    <td>{{ candidatura.data_decisao|default:"-" }}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% else %}
+        <style>
+            .div-sem-registros {
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 70vh;
+                background-color: #f0f0f0;
+                background: #fff;
+                padding: 50px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+
+            .p-emcontent h2 {
+                font-size: 1.7em;
+                margin-bottom: 20px;
+                color: #000000;
+            }
+
+            .p-emcontent p {
+                font-size: 1.0em;
+                color: #666;
+            }
+
+            .p-emloader {
+                margin: 20px auto;
+                text-align: center;
+            }
+
+            .dot-animation {
+                display: inline-block;
+                margin-left: 5px;
+                color: red;
+                animation: dot-blink 3.5s infinite;
+                /*  */
+            }
+
+            @keyframes dot-blink {
+
+                0%,
+                40%,
+                100% {
+                    opacity: 0;
+                }
+
+                20%,
+                60% {
+                    opacity: 1;
+                }
+            }
+        </style>
+
+        <div class="div-sem-registros">
+            <div class="p-emcontent">
+                <h2>Você ainda não fez nenhuma <span style="color: #f4a258;">candidatura</span></h2><br>
+                <span class="dot-animation">.</span>
+                <span class="dot-animation">.</span>
+                <span class="dot-animation">.</span></b>
+                </p>
+                <div class="p-emloader"></div>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+{% endblock %}

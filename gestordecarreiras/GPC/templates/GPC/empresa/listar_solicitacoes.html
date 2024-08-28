@@ -1,0 +1,36 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}
+    Solicitações
+{% endblock %}
+
+{% load static %}
+
+
+{% block content %}
+<h2>Solicitações de Candidatura</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Aluno</th>
+            <th>Vaga</th>
+            <th>Data de Solicitação</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for solicitacao in solicitacoes %}
+        <tr>
+            <td>{{ solicitacao.aluno.user.full_name }}</td>
+            <td>{{ solicitacao.vaga.titulo }}</td>
+            <td>{{ solicitacao.data_solicitacao }}</td>
+            <td>
+                <a href="{% url 'atualizar_solicitacao' 'aceitar' solicitacao.id %}" class="btn btn-success">Aceitar</a>
+                <a href="{% url 'atualizar_solicitacao' 'recusar' solicitacao.id %}" class="btn btn-danger">Recusar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

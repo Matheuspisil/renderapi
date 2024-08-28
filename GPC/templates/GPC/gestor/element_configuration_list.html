@@ -1,0 +1,7 @@
+{% for config in configurations.elements.all %}
+<tr>
+    <td>{{ config.element_name }}</td>
+    <td><input type="color" name="{{ config.id }}_background_color" value="{{ config.background_color }}"></td>
+    <td><input type="color" name="{{ config.id }}_text_color" value="{{ config.text_color }}"></td>
+</tr>
+{% endfor %}

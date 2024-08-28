@@ -1,0 +1,253 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}
+Cadastro de Aluno
+{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'GPC/css/login_cadastro.css' %}">
+{% endblock %}
+
+{% load custom_filters %}
+
+{% block content %}
+<section class="banner">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <h2 class="mb-4">
+                        Cadastro de Aluno
+                    </h2>
+                    <p class="texto-obrigatorio">* Campos obrigatórios</p>
+                    <!-- etapa 1 -->
+                    <div class="step">
+
+                        <div class="form-group">
+                            <label for="email">E-mail: <span class="text-danger">*</span></label>
+                            {{ user_form.email|add_class:"form-control input-cadastro" }}
+                            {% if user_form.email.errors %}
+                            <div class="invalid-feedback">
+                                {{ user_form.email.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password1">Senha: <span class="text-danger">*</span></label>
+                            {{ user_form.password1|add_class:"form-control" }}
+                            {% if user_form.password1.errors %}
+                            <div class="invalid-feedback">
+                                {{ user_form.password1.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password2">Confirme a senha: <span class="text-danger">*</span></label>
+                            {{ user_form.password2|add_class:"form-control" }}
+                            {% if user_form.password2.errors %}
+                            <div class="invalid-feedback">
+                                {{ user_form.password2.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div><br>
+                        <button type="button" class="btn btn-primary nextBtn" onclick="nextStep(0)">Próximo</button>
+                    </div>
+
+                    <!-- etapa 2 -->
+                    <div class="step">
+                        <div class="form-group">
+                            <label for="first_name">Nome completo: <span class="text-danger">*</span></label>
+                            {{ user_form.first_name|add_class:"form-control" }}
+                            {% if user_form.first_name.errors or user_form.last_name.errors %}
+                            <div class="invalid-feedback">
+                                {{ user_form.first_name.errors|join:", " }} {{ user_form.last_name.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="matricula">Matrícula: <span class="text-danger">*</span></label>
+                            {{ aluno_form.matricula|add_class:"form-control" }}
+                            {% if aluno_form.matricula.errors %}
+                            <div class="invalid-feedback">
+                                {{ aluno_form.matricula.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cpf">CPF: <span class="text-danger">*</span></label>
+                            {{ aluno_form.cpf|add_class:"form-control" }}
+                            {% if aluno_form.cpf.errors %}
+                            <div class="invalid-feedback">
+                                {{ aluno_form.cpf.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="data_de_nascimento">Data de nascimento: <span class="text-danger">*</span></label>
+                            {{ aluno_form.data_de_nascimento|add_class:"form-control" }}
+                            {% if aluno_form.data_de_nascimento.errors %}
+                            <div class="invalid-feedback">
+                                {{ aluno_form.data_de_nascimento.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sexo">Sexo:</label>
+                            {{ aluno_form.sexo|add_class:"form-control" }}
+                            {% if aluno_form.sexo.errors %}
+                            <div class="invalid-feedback">
+                                {{ aluno_form.sexo.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div><br>
+
+                        <button type="button" class="btn btn-secondary prevBtn" onclick="prevStep(1)">Anterior</button>
+                        <button type="button" class="btn btn-primary nextBtn" onclick="nextStep(1)">Próximo</button>
+                    </div>
+
+                    <!-- step 3 -->
+                    <div class="step">
+                        <div class="form-group">
+                            <label for="cep">CEP:</label>
+                            {{ aluno_form.cep|add_class:"form-control" }}
+                            {% if aluno_form.cep.errors %}
+                            <div class="invalid-feedback">
+                                {{ aluno_form.cep.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endereco">Endereço: <span class="text-danger">*</span></label>
+                            {{ aluno_form.endereco|add_class:"form-control" }}
+                            {% if aluno_form.endereco.errors %}
+                            <div class="invalid-feedback">
+                                {{ aluno_form.endereco.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numero">Número:</label>
+                            {{ aluno_form.numero|add_class:"form-control" }}
+                            {% if aluno_form.numero.errors %}
+                            <div class="invalid-feedback">
+                                {{ aluno_form.numero.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="complemento">Complemento:</label>
+                            {{ aluno_form.complemento|add_class:"form-control" }}
+                            {% if aluno_form.complemento.errors %}
+                            <div class="invalid-feedback">
+                                {{ aluno_form.complemento.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bairro">Bairro:</label>
+                            {{ aluno_form.bairro|add_class:"form-control" }}
+                            {% if aluno_form.bairro.errors %}
+                            <div class="invalid-feedback">
+                                {{ aluno_form.bairro.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cidade">Cidade:</label>
+                            {{ aluno_form.cidade|add_class:"form-control" }}
+                            {% if aluno_form.cidade.errors %}
+                            <div class="invalid-feedback">
+                                {{ aluno_form.cidade.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="estado">Estado:</label>
+                            {{ aluno_form.estado|add_class:"form-control" }}
+                            {% if aluno_form.estado.errors %}
+                            <div class="invalid-feedback">
+                                {{ aluno_form.estado.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefone">Telefone: <span class="text-danger">*</span></label>
+                            {{ aluno_form.telefone|add_class:"form-control" }}
+                            {% if aluno_form.telefone.errors %}
+                            <div class="invalid-feedback">
+                                {{ aluno_form.telefone.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div><br>
+
+                        <button type="button" class="btn btn-secondary prevBtn" onclick="prevStep(2)">Anterior</button>
+                        <button type="button" class="btn btn-primary nextBtn" onclick="nextStep(2)">Próximo</button>
+                    </div>
+
+                    <!-- step 4 -->
+                    <div class="step">
+                        <div class="form-group">
+                            <label for="curso">Curso: <span class="text-danger">*</span></label>
+                            {{ aluno_form.curso|add_class:"form-control" }}
+                            {% if aluno_form.curso.errors %}
+                            <div class="invalid-feedback">
+                                {{ aluno_form.curso.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="semestre">Semestre:</label>
+                            {{ aluno_form.semestre|add_class:"form-control" }}
+                            {% if aluno_form.semestre.errors %}
+                            <div class="invalid-feedback">
+                                {{ aluno_form.semestre.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group form-check">
+                            <div class="termos d-flex">
+                                <input type="checkbox" class="form-check-input" id="termos-checkbox" name="termos-checkbox" required>
+                                <label class="form-check-label" for="termos-checkbox" id="texto-termos">
+                                    <span class="text-danger">*</span> Li e concordo com os <a href="#">Termos de
+                                        Uso</a> e
+                                    a
+                                    <a href="#">Política de Privacidade</a> deste site.
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-3">
+                            <button type="button" class="btn btn-secondary prevBtn" onclick="prevStep(3)">Anterior</button>
+                            <button type="submit" class="btn btn-primary">
+                                Cadastrar Aluno
+                            </button>
+
+                            <a href="{% url 'index' %}" class="btn btn-danger">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

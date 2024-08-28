@@ -1,0 +1,164 @@
+{% extends "GPC/pages/base.html" %}
+
+{% load static %}
+
+{% block title %}
+Caça Talentos
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'GPC/css/estiloaluno.css' %}">
+{% endblock %}
+
+{% block content %}
+{% comment %} estilo provisorio, nao estava conseguindo importar {% endcomment %}
+<style>
+    .janela {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .janela-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+<h2>Buscar Alunos</h2>
+
+<form method="GET">
+    <h3>Competências Requeridas</h3>
+
+    <label for="etica">Ética:</label>
+    <input type="checkbox" name="etica" id="etica" value="True">
+
+    <label for="autoeficacia">Autoeficácia:</label>
+    <input type="checkbox" name="autoeficacia" id="autoeficacia" value="True">
+
+    <label for="trabalho_equipe">Trabalho em Equipe:</label>
+    <input type="checkbox" name="trabalho_equipe" id="trabalho_equipe" value="True">
+
+    <label for="pens_criativo">Pensamento Criativo:</label>
+    <input type="checkbox" name="pens_criativo" id="pens_criativo" value="True">
+
+    <label for="pens_analitico">Pensamento Analítico:</label>
+    <input type="checkbox" name="pens_analitico" id="pens_analitico" value="True">
+
+    <label for="res_problemas">Resolução de Problemas:</label>
+    <input type="checkbox" name="res_problemas" id="res_problemas" value="True">
+
+    <label for="comunicacao">Comunicação:</label>
+    <input type="checkbox" name="comunicacao" id="comunicacao" value="True">
+
+    <label for="adaptabilidade">Adaptabilidade:</label>
+    <input type="checkbox" name="adaptabilidade" id="adaptabilidade" value="True">
+
+    <label for="persistencia">Persistência:</label>
+    <input type="checkbox" name="persistencia" id="persistencia" value="True">
+
+    <label for="agilidade">Agilidade:</label>
+    <input type="checkbox" name="agilidade" id="agilidade" value="True">
+
+    <label for="gestao">Gestão:</label>
+    <input type="checkbox" name="gestao" id="gestao" value="True">
+
+    <label for="orient_cliente">Orientação ao Cliente:</label>
+    <input type="checkbox" name="orient_cliente" id="orient_cliente" value="True">
+
+    <label for="linguagens">Linguagens:</label>
+    <input type="checkbox" name="linguagens" id="linguagens" value="True">
+
+    <label for="programacao">Programação:</label>
+    <input type="checkbox" name="programacao" id="programacao" value="True">
+
+    <label for="ia">Inteligência Artificial:</label>
+    <input type="checkbox" name="ia" id="ia" value="True">
+
+    <label for="bigdata">Big Data:</label>
+    <input type="checkbox" name="bigdata" id="bigdata" value="True">
+
+    <label for="ciberseg">Cibersegurança:</label>
+    <input type="checkbox" name="ciberseg" id="ciberseg" value="True">
+
+    <label for="redes">Redes:</label>
+    <input type="checkbox" name="redes" id="redes" value="True">
+
+    <label for="qualidade">Qualidade:</label>
+    <input type="checkbox" name="qualidade" id="qualidade" value="True">
+
+    <button type="submit">Buscar</button>
+</form>
+
+<section class="banner">
+    <div class="container">
+        <div class="mentor-cards-container">
+            {% for aluno in alunos %}
+            <div class="mentor-card">
+                <div class="mentor-card-content">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5987/5987424.png" alt="Logo Esquerda" width="200" height="200">
+                    <h3 class="mentor-card-h3">{{aluno.user.first_name}}</h3>
+                    <button class="btn" onclick="abrirJanela('janela-{{aluno.id}}')">Mais Informações</button>
+                </div>
+            </div>
+
+            <div id="janela-{{aluno.id}}" class="janela" style="display: none">
+                <div class="janela-content">
+                    <span class="close" onclick="fecharJanela('janela-{{aluno.id}}')">&times;</span>
+
+                    <h2>{{aluno.user.first_name}}</h2>
+                    <p><b>Idade:</b> {{aluno.idade}}</p>
+                    <p><b>Localidade:</b> {{aluno.cidade}}/{{aluno.estado}}</p>
+                    <p><b>Curso:</b> {{aluno.curso}}</p>
+                    <p><b>Semestre:</b> {{aluno.semestre}}</p>
+                    <p><b>Ênfase:</b> {{aluno.enfase}}</p>
+
+
+                    <button class="btn" onclick="location.href=''">Solicitar Entrevista</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <script>
+            function abrirJanela(modalId) {
+                document.getElementById(modalId).style.display = "block";
+            }
+            function fecharJanela(modalId) {
+                document.getElementById(modalId).style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target.classList.contains('janela')) {
+                    fecharJanela(event.target.id);
+                }
+            }
+        </script>
+
+    </div>
+</section>
+
+{% endblock %}

@@ -4,6 +4,7 @@ from GPC.models.aluno import Aluno
 from GPC.models.mentor import Mentor
 from GPC.forms.forms import CustomLoginForm
 from .ProjetoVidaView import projeto_vida
+from GPC.models.gestor import ElementConfiguration
 
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
@@ -12,7 +13,28 @@ from django.contrib.auth.decorators import login_required
 from .decorators import *
 
 def index(request):
-    return render(request, 'GPC/pages/index.html')
+    elements = ElementConfiguration.objects.all()
+    element_configs = {element.element_name: element for element in elements}
+
+    return render(request, 'GPC/pages/index.html', {
+        'element_configs': element_configs
+    })
+
+def header(request):
+    elements = ElementConfiguration.objects.all()
+    element_configs = {element.element_name: element for element in elements}
+
+    return render(request, 'GPC/partials/header.html', {
+        'element_configs': element_configs
+    })
+
+def footer(request):
+    elements = ElementConfiguration.objects.all()
+    element_configs = {element.element_name: element for element in elements}
+
+    return render(request, 'GPC/partials/footer.html', {
+        'element_configs': element_configs
+    })
 
 def emconstrucao(request):
     return render(request, 'GPC/pages/emconstrucao.html')
@@ -45,7 +67,7 @@ class CustomLoginView(LoginView):
             return reverse_lazy('login')
 
 @login_required
-@user_type_required(user_types=[1, 2, 3])
+@user_type_required(user_types=[1, 2, 3, 4])
 def perfil(request):
     user = request.user
     aluno = None

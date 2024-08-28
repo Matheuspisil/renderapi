@@ -1,0 +1,19 @@
+<!-- GPC/templates/GPC/empresa_dashboard.html -->
+{% extends "GPC/pages/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1>Dashboard da Empresa</h1>
+
+  <a href="{% url 'mentor_registros' %}" class="btn btn-info btn-block mb-3">Listar Mentores</a>
+  <a href="{% url 'empresa_list' %}" class="btn btn-info btn-block mb-3">Listar Empresas</a>
+  <a href="{% url 'vaga_list' %}" class="btn btn-info btn-block mb-3">Listar Vagas</a>
+
+  <h3 class="mt-4">Gestão de Vagas</h3>
+  <a href="{% url 'create_vaga' %}" class="btn btn-info btn-block mb-3">Cadastrar Nova Vaga de Estágio</a>
+  <a href="{% url 'vaga_list' %}" class="btn btn-info btn-block mb-3">Consultar/Alterar Minhas Vagas</a>
+  <h3 class="mt-4">Gestão de Cadastro</h3>
+  <a href="{% url 'update_empresa' empresa.id %}" class="btn btn-info btn-block mb-3">Consultar/Alterar Meu Cadastro</a>
+
+</div>
+{% endblock %}

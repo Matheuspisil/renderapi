@@ -1,0 +1,182 @@
+* 698a722 (HEAD -> matheus, origin/matheus) new Host
+* 5c7c681 Refatorado para Deploy versão 18
+*   8e89422 Merge branch 'matheus' of https://github.com/Tec21Rio/gestordecarreiras into matheus
+|\  
+| *   d714638 Merge pull request #20 from Tec21Rio/Develop
+| |\  
+* | | aacf0eb Merge branches 'Develop' and 'matheus' of https://github.com/Tec21Rio/gestordecarreiras into matheus
+|\| | 
+| |/  
+|/|   
+| * dd0b98a deploys
+| * 848ec33 Deploy 5.0.1
+| * 163105a Deploy 5.0.0 voltando aos nomes originais...
+| * 33b753e Deploy 4.0.2
+| * 85160b4 Deploy 4.0.1 manage.py na raiz
+| * 080565a deploy 4.0.0 - renomeando para gestordecarreira
+| * 3a186a6 Deploy 3.0.4
+| * 0e2a463 Deploy 3.0.3
+| * a2204d8 Deploy 3.0.2
+| * 838fb15 Deploy 3.0.1
+| * d140f88 Deploy 3.0.0
+| * bc4217b voltando 1.0.1
+| * bd5d242 Deploy try 1.0.2
+| * 62eeafe add whitenoise
+| * aca4038 Deploy render 1.0.0
+| * 0a4a704 Deploy try 1.0
+| * b6e7100 Staticfiles and Settingsdeploy
+| * 9a71a0c gestor wsgi for deploy
+| * d51027e add deploy configurations/render.com
+| *   b7d6ec3 Merge branch 'Develop' of https://github.com/Tec21Rio/gestordecarreiras into matheus
+| |\  
+| * | 56d33c6 modified: Base/Header... html's
+* | |   6a4bc11 (origin/HEAD, origin/Develop) Merge pull request #19 from Tec21Rio/raphael
+|\ \ \  
+| * | | dafc96c (origin/raphael) Feat: Filtro mentores para aluno. Mentores listados pela area de atuação
+|/ / /  
+* | |   9f345a1 Merge pull request #18 from Tec21Rio/raphael
+|\ \ \  
+| |_|/  
+|/| |   
+| * | 4d27a4d Feat: pagina 'minhas candidaturas' implementado para o aluno
+|/ /  
+* |   4b477c1 Merge pull request #17 from Tec21Rio/raphael
+|\ \  
+| * | 98cda65 Bugfix: Redirecionamento da vaga corrigido
+| * | 0afd5de Feat: Implementação do matching empresa-vaga-aluno
+|/ /  
+| | * 1b0f8e2 (origin/diogo) feat: whitelabel
+| | * 4e91cf2 feat: whitelabel
+| | *   cc43e68 Merge branch 'diogo' of https://github.com/Tec21Rio/gestordecarreiras into diogo
+| | |\  
+| | | * a1b0791 feat: whitelabel
+| | * | ef3d87a feat: whitelabel
+| | |/  
+| | | *   5fa4ae3 (origin/main) Merge pull request #16 from Tec21Rio/Develop
+| | | |\  
+| |_|_|/  
+|/| | |   
+* | | | a1dd5c0 Update urls.py
+* | | |   0f265e9 Merge pull request #15 from Tec21Rio/diogo
+|\ \ \ \  
+| | |/ /  
+| |/| |   
+| * | |   307802a Merge branch 'Develop' into diogo
+| |\ \ \  
+| |/ / /  
+|/| | |   
+* | | |   cdb5c5a Merge pull request #14 from Tec21Rio/matheus
+|\ \ \ \  
+| | |/ /  
+| |/| |   
+| * | | f3ab3b1 update version 3.0
+| * | | 6446a41 Update planejamento de carreira.
+| * | | f983627 Rebase
+| * | |   4971a1b Merge branches 'Develop' and 'matheus' of https://github.com/Tec21Rio/gestordecarreiras into matheus
+| |\ \ \  
+| |/ / /  
+|/| | |   
+| * | | ec97d61 feat: update forms, models, templates, and add new migrations and images
+| * | | ca82769 Deploy 17
+| * | | ee7e8f5 Deploy try 16.1
+| * | | 3689c27 Deploy try 16.0
+| * | | 179d097  Deploy try 15.0
+| * | | d5d99b7 Deploy try 14.0
+| * | | c7c17b8 Deploy 13
+| * | | cef499b Deploy try 12.0
+| * | | b8e61eb Deploy try 11.0
+| * | | fbb5886 Deploy try 10.0
+| * | | 6828687 Deploy try 9.0
+| * | | fbca0cf Deploy try 8.0 fix .toml
+| * | | a130763 deploy try 7.0 add railway.toml
+| * | | ecd7ef9 deploy 6.0 add config.py modif settings.py
+| * | | 0c35846 Deploy try 5.0
+| * | | b208cc9 deploy try 4.0
+| * | | b520266 Deploy run 3.0
+| * | | 989ad49 Deploy try 2.0
+| * | |   614f247 Merge branch 'matheus' of https://github.com/Tec21Rio/gestordecarreiras into matheus
+| |\ \ \  
+| | * | | 36607f7 deploy assetments
+| | * | |   a4bd7f8 put branch only ahead
+| | |\ \ \  
+| * | | | | b6b5cba Deploy try 1.0
+| |/ / / /  
+| * | | | ef22082 upupupup
+| | | * | 6f0c9d9 feat: gestor dashboard
+| | | * | b6fd1e5 feat: gestor dashboard
+| | | * | 457a190 feat: gestor dashboard
+| | | * |   a7252be Merge pull request #13 from Tec21Rio/Develop
+| | | |\ \  
+| |_|_|/ /  
+|/| | | |   
+| | | | | * 7130349 (refs/stash) WIP on Develop: a9b2858 Merge pull request #12 from Tec21Rio/evellyn
+| |_|_|_|/| 
+|/| | | | | 
+| | | | | * b9f3c72 index on Develop: a9b2858 Merge pull request #12 from Tec21Rio/evellyn
+| |_|_|_|/  
+|/| | | |   
+* | | | |   a9b2858 (Develop) Merge pull request #12 from Tec21Rio/evellyn
+|\ \ \ \ \  
+| * | | | | 0140c7a (origin/evellyn) Fix: identação
+| * | | | |   11b141d Merge pull request #11 from Tec21Rio/Develop
+| |\ \ \ \ \  
+| |/ / / / /  
+|/| | | | |   
+* | | | | | 0d863a8 Merge pull request #10 from Tec21Rio/evellyn
+|\| | | | | 
+| * | | | |   0f35fe8 Merge branch 'Develop' into evellyn
+| |\ \ \ \ \  
+| |/ / / / /  
+|/| | | | |   
+* | | | | |   4df028a Merge pull request #9 from Tec21Rio/diogo
+|\ \ \ \ \ \  
+| |_|_|/ / /  
+|/| | | / /   
+| | |_|/ /    
+| |/| | |     
+| * | | | d85ac0e fix: vagas
+| * | | |   98e983c Merge pull request #7 from Tec21Rio/Develop
+| |\ \ \ \  
+| |/ / / /  
+|/| | | |   
+| | * | | 4230905 Update: design
+| |/ / /  
+|/| | |   
+* | | |   21af4a0 Merge pull request #6 from Tec21Rio/raphael
+|\ \ \ \  
+| * \ \ \   7caa5cc Merge branch 'Develop' into raphael
+| |\ \ \ \  
+| |/ / / /  
+|/| | | |   
+* | | | |   39fcec7 Merge pull request #5 from Tec21Rio/diogo
+|\ \ \ \ \  
+| | |/ / /  
+| |/| | |   
+| * | | | fa14237 feat: gestor area (white-label)
+| * | | | 43046fd feat: gestor area (white-label)
+| * | | | 44ee157 feat: gestor area (white-label)
+| | * | | 3343c0f Feat:Filtro EMPRESA-HUNTER implementado
+| |/ / /  
+|/| | |   
+* | | | b6c0791 (origin/mauricio) Merge pull request #4 from Tec21Rio/diogo
+|\| | | 
+| * | | 83b99bf feat: add gestor
+| * | |   0ac9ed1 Merge pull request #3 from Tec21Rio/Develop
+| |\ \ \  
+| |/ / /  
+|/| | |   
+* | | | 9464c45 Update: style
+* | | |   4ecc2e1 Merge pull request #2 from Tec21Rio/raphael
+|\ \ \ \  
+| |/ / /  
+|/| | |   
+| * | | 0999fb3 Refatoracao: bugix
+|/ / /  
+* | | b2afe81 Merge pull request #1 from Tec21Rio/matheus
+|\| | 
+| * | ce4a977 REF
+|/ /  
+* / d6a03fc Modify: admin.py| add: forms, models e views
+|/  
+* 6ce6c94 feat: add LICENSE and initial gestordecarreiras directory, update .gitignore
+* cccd7d4 Initial commit

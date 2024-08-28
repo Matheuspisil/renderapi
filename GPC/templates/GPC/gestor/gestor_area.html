@@ -1,47 +1,46 @@
-{% extends "GPC/pages/base.html" %}
-
-{% block title %} Page Configuration List {% endblock %}
-
 {% block content %}
-<h1>Page Configurations</h1>
-
-<p>Total Configurations: {{ configurations.count }}</p>
+<h1>Configurações de Página</h1>
 
 <table>
     <thead>
         <tr>
-            <th>Page Name</th>
+            <th>Página</th>
+            <th>Elemento</th>
             <th>Background Color</th>
             <th>Text Color</th>
         </tr>
     </thead>
     <tbody>
         {% for config in configurations %}
-        <tr>
-            <form method="post" action="{% url 'update_page_configuration' config.id %}">
-                {% csrf_token %}
-                <td>{{ config.page_name }}</td>
-                <td>
-                    <input type="color" name="background_color" value="{{ config.background_color }}" required>
-                </td>
-                <td>
-                    <input type="color" name="text_color" value="{{ config.text_color }}" required>
-                </td>
-                <td>
-                    <button type="submit">Save</button>
-                </td>
-            </form>
-        </tr>
+            {% for element in config.elements.all %}
+            <tr>
+                <form method="post" action="{% url 'update_page_configuration' config.id %}">
+                    {% csrf_token %}
+                    <td>{{ config.page_name }}</td>
+                    <td>{{ element.element_name }}</td>
+                    <td>
+                        <input type="color" name="{{ element.id }}_background_color" value="{{ element.background_color }}" required>
+                    </td>
+                    <td>
+                        <input type="color" name="{{ element.id }}_text_color" value="{{ element.text_color }}" required>
+                    </td>
+                    <td>
+                        <button type="submit">Save</button>
+                    </td>
+                </form>
+            </tr>
+            {% endfor %}
         {% endfor %}
     </tbody>
 </table>
 
-{% if configurations.count == 0 %}
-<p>No configurations found.</p>
+{% if configurations|length == 0 %}
+<p>Nenhuma configuração encontrada. Para gerar, clique no botão Gerar configurações / Restaurar padrões</p>
 {% endif %}
 
-<form method="post" action="{% url 'page_configuration_list' %}">
+<form method="post" action="{% url 'reset_configuration_list' %}">
     {% csrf_token %}
-    <button type="submit">Reset to Default</button>
+    <button type="submit">Gerar configurações / Restaurar padrões</button>
 </form>
+
 {% endblock %}

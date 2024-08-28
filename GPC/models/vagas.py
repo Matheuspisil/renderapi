@@ -4,6 +4,7 @@ from django.utils.text import slugify
 from GPC.utils.listas import tipos_vagas
 
 from GPC.models.aluno import Aluno
+from GPC.models.projetovida import ProjetoVida
 
 class Vaga(models.Model):
     empresa = models.ForeignKey(

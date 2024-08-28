@@ -1,0 +1,17 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}Mentoria Aceita{% endblock %}
+
+{% block content %}
+
+<div class="div-p">
+    <div class="p-emcontainer">
+        <div class="p-emcontent">
+            <h1><span style="color: #ffae00;">Mentoria</span> aceita com sucesso!</h1><br>
+            <p>Novo aluno mentoriado: {{mentoria.mentor.user.first_name}} </p>
+            <p>Entre em contato com o mesmo pelo email: {{mentoria.mentor.user}} </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

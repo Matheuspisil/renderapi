@@ -1,0 +1,137 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}
+Mentorias
+{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'GPC/css/estiloaluno.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<section class="banner">
+    <div class="container">
+        {% if mentores %}
+        <h2 class="text-center">Mentores Disponíveis</h2>
+
+        <div class="mentor-cards-container">
+            {% for mentor in mentores %}
+            <div class="mentor-card">
+                <div class="mentor-card-content">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5987/5987424.png" alt="Logo Esquerda" width="200" height="200">
+                    <h3 class="mentor-card-h3">{{mentor.user.first_name}}</h2>
+                        <p class="mentor-card-area">{{mentor.get_area_mentoria_display}}</p>
+                        <button class="btn" onclick="abrirJanela('janela-{{mentor.id}}')">Mais Informações</button>
+                </div>
+            </div>
+
+            <div id="janela-{{mentor.id}}" class="janela">
+                <div class="janela-content">
+                    <span class="close" onclick="fecharJanela('janela-{{mentor.id}}')">&times;</span>
+
+                    <h2>{{mentor.user.first_name}}</h2>
+                    <p><b>Profissão:</b> {{mentor.profissao}}</p>
+                    <p><b>Experiência:</b> {{mentor.experiencia}}</p>
+                    <p><b>Site:</b> <a href="{{mentor.site}}">{{mentor.site}}</a></p>
+                    <p><b>Área de Mentoria:</b> {{mentor.get_area_mentoria_display}}</p>
+
+                    <button class="btn" onclick="location.href='{% url 'aluno_nova_mentoria' mentor.id %}'">Solicitar
+                        mentoria</button>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <script>
+            function abrirJanela(modalId) {
+                document.getElementById(modalId).style.display = "block";
+            }
+            function fecharJanela(modalId) {
+                document.getElementById(modalId).style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target.classList.contains('janela')) {
+                    fecharJanela(event.target.id);
+                }
+            }
+        </script>
+
+        {% else %}
+        <style>
+            .div-sem-registros {
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 70vh;
+                background-color: #f0f0f0;
+                background: #fff;
+                padding: 50px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+
+            .p-emcontent h2 {
+                font-size: 1.7em;
+                margin-bottom: 20px;
+                color: #000000;
+            }
+
+            .p-emcontent p {
+                font-size: 1.0em;
+                color: #666;
+            }
+
+            .p-emloader {
+                margin: 20px auto;
+                text-align: center;
+            }
+
+            .dot-animation {
+                display: inline-block;
+                margin-left: 5px;
+                color: red;
+                animation: dot-blink 3.5s infinite;
+                /*  */
+            }
+
+            @keyframes dot-blink {
+
+                0%,
+                40%,
+                100% {
+                    opacity: 0;
+                }
+
+                20%,
+                60% {
+                    opacity: 1;
+                }
+            }
+        </style>
+
+        <div class="div-sem-registros">
+            <div class="p-emcontent">
+                <h2>Nenhuma <span style="color: #f4a258;">mentor</span> disponível</h2><br>
+                <p>Avisaremos caso novos mentores tenham disponibilidade! <br><b>
+                        <span class="dot-animation">.</span>
+                        <span class="dot-animation">.</span>
+                        <span class="dot-animation">.</span></b>
+                </p>
+                <div class="p-emloader"></div>
+            </div>
+        </div>
+        {% endif %}
+
+
+    </div>
+</section>
+
+{% endblock %}

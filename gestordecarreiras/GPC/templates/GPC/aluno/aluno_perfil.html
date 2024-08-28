@@ -1,0 +1,144 @@
+{% extends "GPC/pages/base.html" %}
+
+{% load static %}
+
+{% block title %}
+Perfil do Aluno
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'GPC/css/estiloaluno.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="banner">
+    <div class="container">
+        <div class="conteudo-perfil">
+            <form class="form-perfil" method="POST" action="{% url 'aluno-update' %}">
+                {% csrf_token %}
+                <h2 class="conteudo-perfil-h2"><b>Perfil do Aluno</b></h2>
+
+                <div class="form-group">
+                    <label for="nome">Nome completo:</label>
+                    <input type="text" class="form-control" id="nome" value="{{ user.get_full_name }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" class="form-control" id="email" value="{{ user.email }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="matricula">Matrícula:</label>
+                    <input type="text" class="form-control" id="matricula" value="{{ aluno.matricula }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" class="form-control" id="cpf" value="{{ aluno.cpf }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="data_nascimento">Data de nascimento:</label>
+                    <input type="text" class="form-control" id="data_nascimento" value="{{ aluno.data_de_nascimento }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="sexo">Sexo:</label>
+                    <input type="text" class="form-control" id="sexo" value="{{ aluno.sexo }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" class="form-control" id="telefone" name="telefone" value="{{ aluno.telefone }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="curso">Curso:</label>
+                    <input type="text" class="form-control" id="curso" value="{{ aluno.curso }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="semestre">Semestre:</label>
+                    <input type="text" class="form-control" id="semestre" name="semestre" value="{{ aluno.semestre }}">
+                </div><br>
+
+                <button class="btn btn-primary" type="button" onclick="showEndereco()">Campos de
+                    Endereço</button><br><br>
+
+                <div class="campos-de-endereco" style="display: none;">
+                    <div class="form-group">
+                        <label for="cep">CEP:</label>
+                        <input type="text" class="form-control" id="cep" name="cep" value="{{ aluno.cep }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endereco">Endereco:</label>
+                        <input type="text" class="form-control" id="endereco" name="endereco" value="{{ aluno.endereco }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numero">Número:</label>
+                        <input type="number" class="form-control" id="numero" name="numero" value="{{ aluno.numero }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bairro">Bairro:</label>
+                        <input type="text" class="form-control" id="bairro" name="bairro" value="{{ aluno.bairro }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cidade">Cidade:</label>
+                        <input type="text" class="form-control" id="cidade" name="cidade" value="{{ aluno.cidade }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="complemento">Complemento:</label>
+                        <input type="text" class="form-control" id="complemento" name="complemento" value="{{ aluno.complemento }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estado">Estado:</label>
+                        <input type="text" class="form-control" id="estado" name="estado" value="{{ aluno.estado }}">
+                    </div>
+
+                    <br>
+                </div>
+                <button type="submit" class="btn btn-warning">Atualizar informações</button>
+                <a href="{% url 'aluno-area' %}" class="btn btn-secondary">Voltar</a>
+            </form>
+
+            <script>
+                $(document).ready(function () {
+                    $('#cep').on('blur', function () {
+                        var cep = $(this).val().replace(/\D/g, '');
+                        if (cep.length != 8) {
+                            return;
+                        }
+                        $.getJSON('https://viacep.com.br/ws/' + cep + '/json/', function (data) {
+                            if (!('erro' in data)) {
+                                $('#endereco').val(data.logradouro);
+                                $('#bairro').val(data.bairro);
+                                $('#cidade').val(data.localidade);
+                                $('#estado').val(data.uf);
+                            } else {
+                                alert('CEP não encontrado.');
+                            }
+                        });
+                    });
+                });
+
+                function showEndereco() {
+                    var endereco = document.getElementsByClassName("campos-de-endereco")[0];
+                    if (endereco.style.display === "none" || endereco.style.display === "") {
+                        endereco.style.display = "block";
+                    } else {
+                        endereco.style.display = "none";
+                    }
+                }
+            </script>
+        </div>
+    </div>
+</section>
+{% endblock %}

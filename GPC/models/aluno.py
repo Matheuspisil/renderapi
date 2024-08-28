@@ -25,8 +25,7 @@ class Aluno(models.Model):
     estado = models.CharField(max_length=2, verbose_name='Estado')
     cep = models.CharField(max_length=9, verbose_name='CEP')
 
-    curso = models.CharField(
-        max_length=100, verbose_name='Curso', choices=cursos_impa)
+    curso = models.CharField(max_length=100, verbose_name='Curso', choices=cursos_impa)
     semestre = models.IntegerField(verbose_name='Semestre')
 
     class Meta:
@@ -47,3 +46,5 @@ class Aluno(models.Model):
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
+
+

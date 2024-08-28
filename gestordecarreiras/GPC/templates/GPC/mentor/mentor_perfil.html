@@ -1,0 +1,150 @@
+{% extends "GPC/pages/base.html" %}
+
+{% load static %}
+
+{% block title %}
+Perfil do Mentor
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'GPC/css/estiloaluno.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="banner">
+    <div class="container">
+        <div class="conteudo-perfil">
+            <form method="POST" action="{% url 'mentor-update' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="nome">Nome completo:</label>
+                    <input type="text" class="form-control" id="nome" value="{{ user.get_full_name }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" class="form-control" id="email" value="{{ user.email }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" class="form-control" id="cpf" value="{{ mentor.cpf }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="data_nascimento">Data de nascimento:</label>
+                    <input type="text" class="form-control" id="data_nascimento" value="{{ mentor.data_de_nascimento }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="sexo">Sexo:</label>
+                    <input type="text" class="form-control" id="sexo" value="{{ mentor.sexo }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" class="form-control" id="telefone" name="telefone" value="{{ mentor.telefone }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="profissao">Profissão:</label>
+                    <input type="text" class="form-control" id="profissao" name="profissao" value="{{ mentor.profissao }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="experiencia_profissional">Experiência Profissional:</label>
+                    <input type="text" class="form-control" id="experiencia_profissional" name="experiencia_profissional" value="{{ mentor.experiencia_profissional }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="profissao">Profissão:</label>
+                    <input type="text" class="form-control" id="profissao" name="profissao" value="{{ mentor.profissao }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="site">Site:</label>
+                    <input type="url" class="form-control" id="site" name="site" value="{{ mentor.site }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="area_mentoria">Àrea de mentoria:</label>
+                    <input type="text" class="form-control" id="area_mentoria" name="area_mentoria" value="{{ mentor.area_mentoria }}">
+                </div><br>
+
+                <button class="btn btn-primary" type="button" onclick="showEndereco()">Campos de Endereço</button><br><br>
+
+                <div class="campos-de-endereco" style="display: none;">
+                    <div class="form-group">
+                        <label for="cep">CEP:</label>
+                        <input type="text" class="form-control" id="cep" name="cep" value="{{ mentor.cep }}">
+                    </div><br>
+
+                    <div class="form-group">
+                        <label for="endereco">Endereco:</label>
+                        <input type="text" class="form-control" id="endereco" name="endereco" value="{{ mentor.endereco }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numero">Número:</label>
+                        <input type="number" class="form-control" id="numero" name="numero" value="{{ mentor.numero }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bairro">Bairro:</label>
+                        <input type="text" class="form-control" id="bairro" name="bairro" value="{{ mentor.bairro }}">
+                    </div><br>
+
+                    <div class="form-group">
+                        <label for="cidade">Cidade:</label>
+                        <input type="text" class="form-control" id="cidade" name="cidade" value="{{ mentor.cidade }}">
+                    </div><br>
+
+                    <div class="form-group">
+                        <label for="complemento">Complemento:</label>
+                        <input type="text" class="form-control" id="complemento" name="complemento" value="{{ mentor.complemento }}">
+                    </div><br>
+
+                    <div class="form-group">
+                        <label for="estado">Estado:</label>
+                        <input type="text" class="form-control" id="estado" name="estado" value="{{ mentor.estado }}">
+                    </div><br>
+                </div>
+
+                <button type="submit" class="btn btn-warning">Atualizar informações</button>
+                <a href="{% url 'mentor-area' %}" class="btn btn-secondary">Voltar</a>
+            </form>
+
+            <script>
+                $(document).ready(function () {
+                    $('#cep').on('blur', function () {
+                        var cep = $(this).val().replace(/\D/g, '');
+                        if (cep.length != 8) {
+                            return;
+                        }
+                        $.getJSON('https://viacep.com.br/ws/' + cep + '/json/', function (data) {
+                            if (!('erro' in data)) {
+                                $('#endereco').val(data.logradouro);
+                                $('#bairro').val(data.bairro);
+                                $('#cidade').val(data.localidade);
+                                $('#estado').val(data.uf);
+                            } else {
+                                alert('CEP não encontrado.');
+                            }
+                        });
+                    });
+                });
+
+                function showEndereco() {
+                    var endereco = document.getElementsByClassName("campos-de-endereco")[0];
+                    if (endereco.style.display === "none" || endereco.style.display === "") {
+                        endereco.style.display = "block";
+                    } else {
+                        endereco.style.display = "none";
+                    }
+                }
+            </script>
+        </div>
+    </div>
+</section>
+{% endblock %}

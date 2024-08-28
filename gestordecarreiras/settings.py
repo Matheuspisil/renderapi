@@ -1,9 +1,5 @@
 from pathlib import Path
-
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,14 +17,12 @@ LOGIN_REDIRECT_URL = 'index'
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
-SECRET_KEY='admin1234'
+SECRET_KEY = "django-insecure-!klje3mxtwu45m0g)li-uxqsob2dh=u4sl-%x%*fz&j3usg_#_"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG=True
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "renderapi-grdq.onrender.com localhost 127.0.0.1").split(" ")
+DEBUG = True
 
-
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -45,7 +39,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -78,17 +71,14 @@ WSGI_APPLICATION = "gestordecarreiras.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-#postgresql://procarreiras_user:2gfFlMXaAWYD5Ke4faqwL4WRJam49uBL@dpg-cqv814jtq21c73a3acgg-a.oregon-postgres.render.com/procarreiras
+
 DATABASES = {
-    'default':{
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'procarreiras',
-            'USER': 'procarreiras_user',
-            'PASSWORD': '2gfFlMXaAWYD5Ke4faqwL4WRJam49uBL',
-            'HOST': 'dpg-cqv814jtq21c73a3acgg-a.oregon-postgres.render.com',
-            'PORT': '5432',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -112,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = "pt-br"
+LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = 'America/Sao_Paulo'
 
@@ -132,16 +122,11 @@ STATICFILES_DIRS = [
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-STATIC_VERSION = '2.0.1'
-# This production code might break development mode, so we check whether we're in DEBUG mode
-if not DEBUG:
-    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_VERSION = '1.0.1'
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

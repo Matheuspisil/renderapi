@@ -457,3 +457,26 @@ label.form-check-label {
 .card-title-vida {
   margin-left: 3%;
 }
+
+.planejamento input,
+.planejamento textarea {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  height: 50px;
+  width: 800px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+input,
+textarea {
+  font-family: 'Poppins', sans-serif;
+}
+
+.visao_futuro textarea {
+  height: 100px;
+}
+
+.plan {
+  margin-top: 0px;
+}

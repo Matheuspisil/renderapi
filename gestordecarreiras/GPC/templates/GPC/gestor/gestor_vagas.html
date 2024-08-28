@@ -1,0 +1,29 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>Lista de Vagas</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Empresa</th>
+                    <th>Título</th>
+                    <th>Tipo da Vaga</th>
+                    <th>Data de Publicação</th>
+                    <th>Data de Encerramento</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vaga in vagas %}
+                    <tr>
+                        <td>{{ vaga.empresa.razao_social }}</td>
+                        <td>{{ vaga.titulo }}</td>
+                        <td>{{ vaga.tipo_vaga }}</td>
+                        <td>{{ vaga.data_publicacao }}</td>
+                        <td>{{ vaga.data_encerramento }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

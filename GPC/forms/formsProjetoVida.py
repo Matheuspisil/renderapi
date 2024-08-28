@@ -1,6 +1,6 @@
 from django import forms
 from GPC.forms.forms import *
-from GPC.models.projetovida import ProjetoVida, Autoconhecimento
+from GPC.models.projetovida import ProjetoVida, Autoconhecimento, PlanejamentoParametros
 from GPC.models.projetovida import PlanejamentoCarreira
 
 
@@ -114,6 +114,8 @@ class PlanejamentoCarreiraForm(forms.ModelForm):
     curto_prazo_profissional = forms.CharField(widget=forms.Textarea(attrs={'rows': 2}), required=False)
     medio_prazo_profissional = forms.CharField(widget=forms.Textarea(attrs={'rows': 2}), required=False)
     longo_prazo_profissional = forms.CharField(widget=forms.Textarea(attrs={'rows': 2}), required=False)
+    
+    planejamento_carreiras = PlanejamentoParametros()
 
     metas_especificas = forms.MultipleChoiceField(
         choices=[
@@ -175,5 +177,6 @@ class PlanejamentoCarreiraForm(forms.ModelForm):
             'planos_acao',
             'outros_texto',
             'visao_futuro',
-            'estudos'
+            'estudos',
+            
         ]

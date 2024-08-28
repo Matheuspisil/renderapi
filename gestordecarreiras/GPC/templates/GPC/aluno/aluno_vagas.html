@@ -1,0 +1,208 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}
+Vagas
+{% endblock %}
+{% load custom_filters %}
+
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'GPC/css/estiloaluno.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .texto-card {
+        font-size: 16px;
+        /* Tamanho desejado para o texto */
+    }
+
+    .card-header a {
+        text-decoration: none;
+        color: #0000FF;
+        font-size: 20px;
+        font-weight: bold;
+    }
+</style>
+
+<section class="banner">
+    <div class="container">
+        {% if vagas %}
+        <h2 style="text-align: center;">Vagas e Oportunidades</h2>
+        <br>
+
+        {% for vaga in vagas %}
+        <div class="card mb-3 mx-auto" style="max-width: 600px; background-color: #fff; border-radius: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); overflow: hidden;">
+            <div class="card-header">
+                <a href="http://">{{ vaga.titulo|upper }}</a>
+            </div>
+            <div class="card-body" style="margin-left: 30px;">
+                <p class="card-text texto-card"><strong>Empresa:</strong> <b>{{ vaga.empresa }}</b></p>
+                <p class="card-text texto-card"><strong>Descrição:</strong> {{ vaga.descricao }}</p>
+                <p class="card-text texto-card"><strong>Data de Publicação:</strong> {{ vaga.data_publicacao|format_date }}</p>
+                <p class="card-text texto-card"><strong>Data de Encerramento:</strong> {{ vaga.data_encerramento|format_date }}</p>
+
+                <button class="btn btn-danger mt-3" onclick="abrirJanela('janela-{{vaga.id}}')">Ver detalhes</button>
+            </div>
+        </div>
+
+        <div id="janela-{{vaga.id}}" class="janela">
+            <div class="janela-content">
+                <span class="close" onclick="fecharJanela('janela-{{vaga.id}}')">&times;</span>
+
+                <h2>{{vaga.titulo}}</h2>
+                <p><b>Empresa:</b> {{vaga.empresa}}</p>
+                <p><b>Descrição:</b> {{vaga.descricao}}</p>
+                <p><b>Data de Publicação:</b> {{vaga.data_publicacao|format_date}}</p>
+                <p><b>Data de Encerramento:</b> {{vaga.data_encerramento|format_date}}</p>
+                <p><b>Requisitos:</b></p>
+
+                <ul>
+                    {% if vaga.adaptabilidade == 1%} <li>
+                        <p>Adaptabilidade</p>
+                    </li> {% endif %}
+                    {% if vaga.agilidade == 1%} <li>
+                        <p>Agilidade</p>
+                    </li> {% endif %}
+                    {% if vaga.autoeficacia == 1%} <li>
+                        <p>Autoeficácia</p>
+                    </li> {% endif %}
+                    {% if vaga.bigdata == 1%} <li>
+                        <p>Big Data</p>
+                    </li> {% endif %}
+                    {% if vaga.ciberseg == 1%} <li>
+                        <p>Cibersegurança</p>
+                    </li> {% endif %}
+                    {% if vaga.comunicacao == 1%} <li>
+                        <p>Comunicação</p>
+                    </li> {% endif %}
+                    {% if vaga.etica == 1%} <li>
+                        <p>Ética</p>
+                    </li> {% endif %}
+                    {% if vaga.gestao == 1%} <li>
+                        <p>Gestão</p>
+                    </li> {% endif %}
+                    {% if vaga.ia == 1%} <li>
+                        <p>Inteligência Artificial</p>
+                    </li> {% endif %}
+                    {% if vaga.orient_cliente == 1%} <li>
+                        <p>Orientação ao Cliente</p>
+                    </li> {% endif %}
+                    {% if vaga.pens_analitico == 1%} <li>
+                        <p>Pensamento Analítico</p>
+                    </li> {% endif %}
+                    {% if vaga.pens_criativo == 1%} <li>
+                        <p>Pensamento Criativo</p>
+                    </li> {% endif %}
+                    {% if vaga.persistencia == 1%} <li>
+                        <p>Persistência</p>
+                    </li> {% endif %}
+                    {% if vaga.programacao == 1%} <li>
+                        <p>Programação</p>
+                    </li> {% endif %}
+                    {% if vaga.qualidade == 1%} <li>
+                        <p>Qualidade</p>
+                    </li> {% endif %}
+                    {% if vaga.redes == 1%} <li>
+                        <p>Redes</p>
+                    </li> {% endif %}
+                    {% if vaga.res_problemas == 1%} <li>
+                        <p>Resolução de Problemas</p>
+                    </li> {% endif %}
+                    {% if vaga.trabalho_equipe == 1%} <li>
+                        <p>Trabalho em Equipe</p>
+                    </li> {% endif %}
+
+                </ul>
+                <a href="{% url 'aluno-candidatar-se' vaga.id %}" class="btn btn-danger mt-3">Quero me candidatar</a>
+            </div>
+        </div>
+        {% endfor %}
+
+        <script>
+            function abrirJanela(modalId) {
+                document.getElementById(modalId).style.display = "block";
+            }
+            function fecharJanela(modalId) {
+                document.getElementById(modalId).style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target.classList.contains('janela')) {
+                    fecharJanela(event.target.id);
+                }
+            }
+        </script>
+        {% else %}
+        <style>
+            .div-sem-registros {
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 70vh;
+                background-color: #f0f0f0;
+                background: #fff;
+                padding: 50px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+
+            .p-emcontent h2 {
+                font-size: 1.7em;
+                margin-bottom: 20px;
+                color: #000000;
+            }
+
+            .p-emcontent p {
+                font-size: 1.0em;
+                color: #666;
+            }
+
+            .p-emloader {
+                margin: 20px auto;
+                text-align: center;
+            }
+
+            .dot-animation {
+                display: inline-block;
+                margin-left: 5px;
+                color: red;
+                animation: dot-blink 3.5s infinite;
+                /*  */
+            }
+
+            @keyframes dot-blink {
+
+                0%,
+                40%,
+                100% {
+                    opacity: 0;
+                }
+
+                20%,
+                60% {
+                    opacity: 1;
+                }
+            }
+        </style>
+
+        <div class="div-sem-registros">
+            <div class="p-emcontent">
+                <h2>Nenhuma <span style="color: #f4a258;">vaga</span> disponível</h2><br>
+                <p>Avisaremos caso novas vagas sejam cadastradas! <br><b>
+                        <span class="dot-animation">.</span>
+                        <span class="dot-animation">.</span>
+                        <span class="dot-animation">.</span></b>
+                </p>
+                <div class="p-emloader"></div>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

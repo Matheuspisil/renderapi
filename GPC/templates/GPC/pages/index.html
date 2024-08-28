@@ -1,6 +1,6 @@
 {% extends 'GPC/pages/base.html' %}
 
-{% block title %} ProCarreiras {% endblock title %}
+{% block title %} ProCarreiras{% endblock title %}
 
 {% load static %}
 
@@ -10,66 +10,114 @@
 
 {% block content %}
 
-<div class="banner banner1">
+<div class="banner banner1" style="background-color: {{ element_configs.banner1.background_color }}; color: {{ element_configs.banner1.text_color }}">
   <h1 class="h1-index">
     <b>Plataforma de Gestão de Carreiras</b>
   </h1>
 
-  <button class="button-orange">
-    Descubra mais <img src="{% static 'GPC/images/seta.png' %}" alt="Ícone Seta">
+  <button class="button-coletivo" style="color: {{ element_configs.button_orange.text_color }};" onclick="location.href='https://www.coletivoaprendiz.org.br/'"">
+    Descubra mais sobre o Coletivo Aprendiz <img src=" {% static 'GPC/images/seta.png' %}" alt="Ícone Seta">
   </button>
 </div>
 
-<div class="banner banner2">
+<div class="banner banner2" style="background-color: {{ element_configs.banner2.background_color }}; color: {{ element_configs.banner2.text_color }}">
+  <h2 class="text-start" style="color: {{ element_configs.h2_text_start.text_color }};">
+    <b>
+      Uma nova ferramenta <span class="span-amarelo">inovadora</span> cujo objetivo é proporcionar oportunidades de parceria e networking
+      no mercado de trabalho para os estudantes do <span class="span-amarelo">Coletivo Aprendiz</span>.
+    </b>
+  </h2>
+  <br>
+
   <div class="ml-auto">
-    <h2 class="text-end"><b>“Queremos transformar o mundo por meio da matemática.”</b></h2>
-    <p class="text-end">Marcelo Viana - Diretor-Geral do IMPA</p>
+    <h3 class="text-end" style="color: {{ element_configs.h2_text_end.text_color }};"><b>Um trabalho muda uma <span class="span-amarelo">vida</span>!</b></h3>
+    <h3 class="text-end" style="color: {{ element_configs.p_text_end.text_color }};"><b>Um trabalho <span class="span-amarelo">em rede</span> muda muito mais.</b></h3>
   </div>
 
 
-  <h2 class="text-start">
-    <b>
-      Uma nova ferramenta inovadora cujo objetivo é proporcionar oportunidades de parceria e networking
-      no mercado de trabalho.
-    </b>
-  </h2>
 </div>
-<div class="banner banner3">
 
-  <h2 class="text-center"><b>Faça parte da plataforma</b></h2>
+<div class="banner banner3" style="background-color: {{ element_configs.banner3.background_color }}; color: {{ element_configs.banner3.text_color }}">
+
+  <h2 class="text-center" style="color: {{ element_configs.h2_text_center.text_color }};"><b>Faça parte da plataforma</b></h2>
 
   <div class="mentor-cards-container">
 
-    <div class="mentor-card">
-      <h3 class="card-titulo"><b><a href="{% url 'formulario-aluno' %}" }>Estudantes</a></b></h3>
+    <div class="mentor-card" style="background-color: {{ element_configs.mentor_card.background_color }}; color: {{ element_configs.mentor_card.text_color }}">
+      <h3 class="card-titulo" style="color: {{ element_configs.card_titulo.text_color }};"><b><a href="{% url 'formulario-aluno' %}" style="color: {{ element_configs.card_titulo_link.text_color }};">Estudantes</a></b></h3>
       <div class="card-content">
-        <p><img src="{% static 'GPC/images/curriculo.png' %}" alt="Ícone Seta">Crie um plano de vida</p>
-        <p><img src="{% static 'GPC/images/oportunidades.png' %}" alt="Ícone Seta">Concorra a vagas</p>
-        <p><img src="{% static 'GPC/images/mentoria.png' %}" alt="Ícone Seta">Mentores profissionais</p>
+        <ul>
+          <li style="color: {{ element_configs.card_content_p.text_color }};">
+            <p>Crie um plano de vida personalizado</p>
+          </li>
+
+          <li style="color: {{ element_configs.card_content_p.text_color }};">
+            <p>Monte um currículo impressionador</p>
+          </li>
+
+          <li style="color: {{ element_configs.card_content_p.text_color }};">
+            <p>Conecte-se a mentores profissionais</p>
+          </li>
+
+          <li style="color: {{ element_configs.card_content_p.text_color }};">
+            <p>Candidate-se as melhores vagas</p>
+          </li>
+
+        </ul>
       </div>
     </div>
 
-    <div class="mentor-card">
-      <h3 class="card-titulo"><b><a href="{% url 'mentor_cadastro' %}" }>Mentores</a></b></h3>
+    <div class="mentor-card" style="background-color: {{ element_configs.mentor_card.background_color }}; color: {{ element_configs.mentor_card.text_color }}">
+      <h3 class="card-titulo" style="color: {{ element_configs.card_titulo.text_color }};"><b><a href="{% url 'mentor_cadastro' %}" style="color: {{ element_configs.card_titulo_link.text_color }};">Mentores</a></b></h3>
       <div class="card-content">
-        <p><img src="{% static 'GPC/images/curriculo.png' %}" alt="Ícone Seta">Crie um plano de vida</p>
-        <p><img src="{% static 'GPC/images/oportunidades.png' %}" alt="Ícone Seta">Torne-se referência</p>
-        <p><img src="{% static 'GPC/images/mentoria.png' %}" alt="Ícone Seta">Auxilie nossos alunos</p>
+        <ul>
+
+          <li style="color: {{ element_configs.card_content_p.text_color }};">
+            <p>Seja o mentor profissional de um estudante</p>
+          </li>
+
+          <li style="color: {{ element_configs.card_content_p.text_color }};">
+            <p>Forneça orientação de carreira</p>
+          </li>
+
+          <li style="color: {{ element_configs.card_content_p.text_color }};">
+            <p>Compartilhe experiências, desafios e aprendizados</p>
+          </li>
+
+          <li style="color: {{ element_configs.card_content_p.text_color }};">
+            <p>Dê feedbacks e insights valiosos</p>
+          </li>
+
+        </ul>
       </div>
     </div>
 
-    <div class="mentor-card">
-      <h3 class="card-titulo"><b><a href="{% url 'create_empresa' %}" }>Empresas</a></b></h3>
-      <div class=" card-content">
-        <p><img src="{% static 'GPC/images/curriculo.png' %}" alt="Ícone Seta">Cadastre suas vagas</p>
-        <p><img src="{% static 'GPC/images/oportunidades.png' %}" alt="Ícone Seta">Torne-se parceiro</p>
-        <p><img src="{% static 'GPC/images/mentoria.png' %}" alt="Ícone Seta">Encontre novos profissionais</p>
+    <div class="mentor-card" style="background-color: {{ element_configs.mentor_card.background_color }}; color: {{ element_configs.mentor_card.text_color }}">
+      <h3 class="card-titulo" style="color: {{ element_configs.card_titulo.text_color }};"><b><a href="{% url 'create_empresa' %}" style="color: {{ element_configs.card_titulo_link.text_color }};">Empresas</a></b></h3>
+      <div class="card-content">
+        <ul>
+
+          <li style="color: {{ element_configs.card_content_p.text_color }};">
+            <p>Seja uma empresa parceira do Coletivo</p>
+          </li>
+
+          <li style="color: {{ element_configs.card_content_p.text_color }};">
+            <p>Divulgue suas vagas e oportunidades</p>
+          </li>
+
+          <li style="color: {{ element_configs.card_content_p.text_color }};">
+            <p>Gerencie seus Contratos</p>
+          </li>
+
+          <li style="color: {{ element_configs.card_content_p.text_color }};">
+            <p>Monte um Banco de Talentos</p>
+          </li>
+
+        </ul>
       </div>
     </div>
 
   </div>
-
-</div>
 
 </div>
 

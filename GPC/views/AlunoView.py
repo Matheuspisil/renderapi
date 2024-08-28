@@ -12,6 +12,8 @@ from GPC.models.projetovida import ProjetoVida, Autoconhecimento
 from GPC.forms.formsAluno import AlunoForm, AlunoUpdateForm
 from GPC.forms.forms import UsuarioForm
 
+from django.db import models
+
 
 def register_aluno(request):
     if request.method == 'POST':
@@ -53,20 +55,35 @@ def aluno_area(request):
     }
     return render(request, 'GPC/aluno/aluno_area.html', context)
 
-
 @login_required
 @user_type_required(user_types=[1])
 def aluno_mentoria(request):
+    '''lista os mentores ordenadando pela area de atuação'''
     aluno = Aluno.objects.get(user=request.user)
+    projeto_vida = ProjetoVida.objects.filter(aluno=aluno).first()
 
-    # filtrando os mentores do aluno
-    mentores_do_aluno = Mentoria.objects.filter(
-        aluno_id=aluno.id).values_list('mentor_id', flat=True)
+    if not projeto_vida:
+        area_interesse_aluno = None
+    else:
+        area_interesse_aluno = projeto_vida.area_interesse
 
-    mentores_nao_relacionados = Mentor.objects.exclude(
-        id__in=mentores_do_aluno)
+    mentores_do_aluno = Mentoria.objects.filter(aluno_id=aluno.id).values_list('mentor_id', flat=True)
+
+    mentores_nao_relacionados = Mentor.objects.exclude(id__in=mentores_do_aluno)
+
+    #prioriza os mentores com area de formacao igual a area de interesse do aluno
+    if area_interesse_aluno:
+        mentores_nao_relacionados = mentores_nao_relacionados.annotate(
+            match=models.Case(
+                models.When(area_mentoria=area_interesse_aluno, then=1),
+                default=0,
+                output_field=models.IntegerField()
+            )
+        ).order_by('-match')
 
     return render(request, 'GPC/aluno/aluno_mentoria.html', {'aluno': aluno, 'mentores': mentores_nao_relacionados})
+
+
 
 
 @login_required
@@ -209,3 +226,8 @@ def aluno_vagas(request):
     vagas = [vaga for vaga, pontuacao in vagas_recomendadas]
 
     return render(request, 'GPC/aluno/aluno_vagas.html', {'aluno': aluno, 'vagas': vagas})
+
+
+def aluno_candidaturas(request):
+    candidaturas = AlunoVaga.objects.filter(aluno__user=request.user)
+    return render(request, 'GPC/aluno/aluno_candidaturas.html', {'candidaturas': candidaturas})

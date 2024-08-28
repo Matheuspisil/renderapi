@@ -52,18 +52,35 @@ tipos_vagas = [
 ]
 
 areas_de_interesse = [
+    ('analise_quantitativa', 'Análise Quantitativa'),
+    ('pesquisa_operacional', 'Pesquisa Operacional'),
+    ('ensino', 'Ensino e Educação'),
+    ('estatistica_aplicada', 'Estatística Aplicada'),
+    ('desenvolvimento_software', 'Desenvolvimento de Software'),
+    ('seguranca_cibernetica', 'Segurança Cibernética'),
+    ('gestao_de_ti', 'Gestão de TI'),
+    ('inteligencia_artificial', 'Inteligência Artificial'),
+    ('ciencia_dados_aplicada', 'Ciência de Dados Aplicada'),
+    ('analise_dados', 'Análise de Dados'),
+    ('engenharia_de_dados', 'Engenharia de Dados'),
+    ('governanca_de_dados', 'Governança de Dados'),
+    ('pesquisa_academica', 'Pesquisa Acadêmica da Física'),
+    ('fisica_medica', 'Física Médica'),
+    ('nanotecnologia', 'Nanotecnologia'),
+    ('energia_sustentabilidade', 'Energia e Sustentabilidade'),
+    ('biofisica', 'Biofísica'),
+    ('astronomia', 'Astronomia'),
+    ('climatolofia_metereologia', 'Climatologia e Metereologia'),
     ('analise_numerica', 'Análise Numérica'),
     ('estatistica', 'Estatística'),
-    ('pesquisa_operacional', 'Pesquisa Operacional'),
     ('big_data', 'Big Data'),
     ('machine_learning', 'Machine Learning'),
     ('visualizacao_dados', 'Visualização de Dados'),
     ('algoritmos', 'Algoritmos e Estruturas de Dados'),
     ('seguranca_informacao', 'Segurança da Informação'),
-    ('desenvolvimento_software', 'Desenvolvimento de Software'),
     ('fisica_computacional', 'Física Computacional'),
     ('modelagem_simulacao', 'Modelagem e Simulação'),
-    ('inteligencia_artificial', 'Inteligência Artificial Aplicada'),
+    ('inteligencia_artificial_aplicada', 'Inteligência Artificial Aplicada')
 ]
 
 
@@ -154,6 +171,7 @@ disciplinas = [
     ('INT006', 'Computação Científica')]
 
 
+#aumentei as areas de mentoria e areas de interesse
 areas_mentoria = [
     ('analise_quantitativa', 'Análise Quantitativa'),
     ('pesquisa_operacional', 'Pesquisa Operacional'),
@@ -173,5 +191,15 @@ areas_mentoria = [
     ('energia_sustentabilidade', 'Energia e Sustentabilidade'),
     ('biofisica', 'Biofísica'),
     ('astronomia', 'Astronomia'),
-    ('climatolofia_metereologia', 'Climatologia e Metereologia')
+    ('climatolofia_metereologia', 'Climatologia e Metereologia'),
+    ('analise_numerica', 'Análise Numérica'),
+    ('estatistica', 'Estatística'),
+    ('big_data', 'Big Data'),
+    ('machine_learning', 'Machine Learning'),
+    ('visualizacao_dados', 'Visualização de Dados'),
+    ('algoritmos', 'Algoritmos e Estruturas de Dados'),
+    ('seguranca_informacao', 'Segurança da Informação'),
+    ('fisica_computacional', 'Física Computacional'),
+    ('modelagem_simulacao', 'Modelagem e Simulação'),
+    ('inteligencia_artificial_aplicada', 'Inteligência Artificial Aplicada')
 ]

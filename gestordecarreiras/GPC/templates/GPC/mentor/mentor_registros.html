@@ -1,0 +1,36 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}
+Lista de Mentores
+{% endblock %}
+
+{% block content %}
+
+<body>
+    <h1>Lista de Mentores</h1>
+    <div class="container mt-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Profissão</th>
+                    <th>Disponibilidade</th>
+                    <th>Email</th>
+                    <th>Site</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mentor in lista_mentores%}
+                <tr>
+                    <td><a href="{% url 'mentor_area' mentor.pk  %}">{{ mentor.nome }}</a></td>
+                    <td>{{ mentor.profissao }}</td>
+                    <td>{{ mentor.area_mentoria }}</td>
+                    <td>{{ mentor.email }}</td>
+                    <td><a target="_blank" href="{{ mentor.site }}">{{ mentor.site }}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% endblock %}

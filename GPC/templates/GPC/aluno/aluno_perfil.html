@@ -104,6 +104,9 @@ Perfil do Aluno
                     </div>
 
                     <br>
+
+                    {% comment %} <a href="{% url 'download_curriculo' aluno.id %}" class="btn btn-primary">Baixar Currículo</a> {% endcomment %}
+
                 </div>
                 <button type="submit" class="btn btn-warning">Atualizar informações</button>
                 <a href="{% url 'aluno-area' %}" class="btn btn-secondary">Voltar</a>

@@ -1,105 +1,136 @@
 {% extends "GPC/pages/base.html" %}
 
-{% block title %}Planejamento de Carreira{% endblock %}
+{% load static %}
+
+{% block title %}
+Planejamento de Carreira
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'GPC/css/estiloaluno.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="container">
-  <h2 class="text-center">Planejamento de Carreira</h2><br><br>
-  <h4 class="text-center">Vamos te ajudar a se organizar e sugerir melhores caminhos baseados em seu perfil.</h4><br><br><br>
-  <form method="post" novalidate>
-    {% csrf_token %}
-    <div class="row">
-      <div class="col-md-6">
-        <h3 class="text-left">Objetivos Pessoais</h3>
-        <div class="form-group">
+
+<section class="banner">
+  <div class="container">
+    <div class="conteudo-perfil">
+      <form method="POST" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <h2 class="mb-4">Planejamento de Carreira</h2>
+
+        <h4 class="mb-4">Vamos te ajudar a se organizar e sugerir melhores caminhos baseados em seu perfil.</h4>
+
+        <hr> <!-- Linha adicionada entre as seções -->
+
+        <div class="col-md-6 planejamento">
+
+          <h3 class="text-left">Objetivos Pessoais</h3>
+
+          <div class="form-group">
+            <label for="curto_prazo_pessoal">Curto Prazo:</label><br>
             <p>Metas que você pode alcançar em até um ano</p>
-          <label for="curto_prazo_pessoal">Curto Prazo:</label><br>
-          {{ form.curto_prazo_pessoal }}
-        </div>
-        <div class="form-group">
+            {{ form.curto_prazo_pessoal }}
+          </div>
+
+          <div class="form-group">
+            <label for="medio_prazo_pessoal">Médio Prazo:</label><br>
             <p>Metas que podem levar de 1 a 5 anos para serem realizadas.</p>
-          <label for="medio_prazo_pessoal">Médio Prazo:</label><br>
-          {{ form.medio_prazo_pessoal }}
-        </div>
-        <div class="form-group">
+            {{ form.medio_prazo_pessoal }}
+          </div>
+
+          <div class="form-group">
+            <label for="longo_prazo_pessoal">Longo Prazo:</label><br>
             <p>Metas que você deseja alcançar em um prazo superior a 5 anos.</p>
-          <label for="longo_prazo_pessoal">Longo Prazo:</label><br>
-          {{ form.longo_prazo_pessoal }} <br><br>
-          <P><b>Dica</b></P>
-          <span>Seja específico, mensurável, realista e relevante.</span>
-          <br> 
+            {{ form.longo_prazo_pessoal }}
+          </div>
+
         </div>
-      </div>
-      <div class="col-md-6">
-        <h3 class="text-left">Objetivos Profissionais</h3>
-        <div class="form-group">
-          <label for="curto_prazo_profissional">Curto Prazo:</label><br>
-          {{ form.curto_prazo_profissional }}
+
+        <br>
+        <hr>
+
+        <div class="col-md-6 planejamento">
+          <h3 class="text-left">Objetivos Profissionais</h3>
+          <div class="form-group">
+            <label for="curto_prazo_profissional">Curto Prazo:</label><br>
+            {{ form.curto_prazo_profissional }}
+          </div>
+          <div class="form-group">
+            <label for="medio_prazo_profissional">Médio Prazo:</label><br>
+            {{ form.medio_prazo_profissional }}
+          </div>
+          <div class="form-group">
+            <label for="longo_prazo_profissional">Longo Prazo:</label><br>
+            {{ form.longo_prazo_profissional }} <br><br>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="medio_prazo_profissional">Médio Prazo:</label><br>
-          {{ form.medio_prazo_profissional }}
+
+        <hr>
+
+        <div class="col-md-6">
+          <h3 class="text-left">Metas Específicas</h3>
+          <div class="form-group">
+            <label for="metas_especificas"></label>
+            {{ form.metas_especificas }}
+          </div>
+          <br>
+          <div class="form-group planejamento">
+            <h3 class="text-left">Metas Adicionais</h3>
+            <p>Não encontrou sua meta? Adicione ela aqui!</p>
+            <label for="outros_texto"></label>
+            {{ form.outros_texto }}
+          </div>
+
         </div>
-        <div class="form-group">
-          <label for="longo_prazo_profissional">Longo Prazo:</label><br>
-          {{ form.longo_prazo_profissional }} <br><br>
-          <P><b>Dica</b></P>
-          <span>Se questione !<br>
-            Qual é o seu cargo ideal?<br>
-            Em qual empresa você gostaria de trabalhar?<br>
+
+        <hr>
+
+        <div class="col-md-6">
+          <h3 class="text-left">Planos de Ação</h3>
+
+          <div class="form-group plan">
+            <label for="planos_acao"></label>
+            {{ form.planos_acao }}
+          </div>
+
+        </div>
+
+        <br>
+        <hr>
+
+        <div class="col-md-8 planejamento">
+          <h3 class="text-left">Meu Futuro</h3>
+          <h4 style="line-height: 1.6;">
+            Qual é o seu cargo ideal? <br>
+            Em qual empresa gostaria de trabalhar?<br>
             Qual é o seu nível de renda desejado?<br>
             O que você espera alcançar profissionalmente nos próximos anos?<br>
-            Quais são suas maiores ambições profissionais? </span>
-        </div>
-      </div>
-    </div>
-<br><br><br>
-    <div class="row">
-      <div class="col-md-6">
-        <h3 class="text-left">Metas Específicas</h3>
-        <div class="form-group">
-          <label for="metas_especificas"></label><br>
-          {{ form.metas_especificas }}
-        </div>
-      </div>
-      <div class="col-md-6">
-        <h3 class="text-left">Planos de Ação</h3>
-        <p>Ao escolher um plano de ação,<br>
-            vamos sugerir as medidas mais<br>
-             eficientes para que você execute<br>
-             suas atividades sem procrastinar.</p>
-        <div class="form-group">
-          <label for="planos_acao"></label>
-          {{ form.planos_acao }}
-        </div>
-      </div>
-    </div>
-<br>
-    <div class="form-group">
-      <h3 class="text-left">Metas Adicionais</h3>
-      <p>Não encontrou sua meta? add ela aqui.</p>
-      <label for="outros_texto"></label>
-      {{ form.outros_texto }}
-    </div>
-<br><br><br>
-    <div class="row">
-      <div class="col-md-6">
-        <h3 class="text-left">Meu Futuro</h3>
-        <div class="form-group">
-          <label for="visao_futuro"></label>
-          {{ form.visao_futuro }}
-        </div>
-      </div>
-      <div class="col-md-6">
-        <h3 class="text-left">Meus Estudos</h3>
-        <div class="form-group">
-          <label for="estudos"></label>
-          {{ form.estudos }}
-        </div>
-      </div>
-    </div>
+            Quais são suas maiores ambições profissionais?<br>
+          </h4>
 
-    <button type="submit" class="btn btn-primary btn-block">Salvar</button>
-  </form>
-</div>
+          <div class="form-group visao_futuro">
+            <label for="visao_futuro"></label>
+            {{ form.visao_futuro }}
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="col-md-6">
+          <h3 class="text-left">Meus Estudos</h3>
+          <div class="form-group">
+            <label for="metas_especificas"></label>
+            {{ form.estudos }}
+          </div>
+          <br>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+
+      </form>
+    </div>
+  </div>
+</section>
+
 {% endblock %}

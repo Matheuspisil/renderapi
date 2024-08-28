@@ -14,6 +14,7 @@ from ..forms.formsProjetoVida import *
 from ..models.projetovida import *
 from django.contrib import messages
 from django.conf import settings
+import requests
 import pandas as pd
 import os
 
@@ -213,73 +214,62 @@ class PlanejamentoCarreiraView(View):
     def post(self, request, *args, **kwargs):
         form = PlanejamentoCarreiraForm(request.POST)
         if form.is_valid():
-            planejamento_carreira = form.save(commit=False)
-            metas_especificas = form.cleaned_data.get('metas_especificas')
-            planos_acao = form.cleaned_data.get('planos_acao')
-            estudos = form.cleaned_data.get('estudos')
-
-            recomendacoes = []
-
-            gtd_score = 0
-            kanban_score = 0
-            pomodoro_score = 0
-            ivylee_score = 0
-
-            # Verificar metas específicas
-            for meta in metas_especificas:
-                try:
-                    recomendacao_meta = MetaEspecifica.objects.get(meta=meta)
-                    gtd_score += recomendacao_meta.GTD
-                    kanban_score += recomendacao_meta.Kanban
-                    pomodoro_score += recomendacao_meta.Pomodoro
-                    ivylee_score += recomendacao_meta.Ivy_Lee
-                except MetaEspecifica.DoesNotExist:
-                    print(f"Meta específica '{meta}' não encontrada no banco de dados")
-
-            # Verificar planos de ação
-            for plano in planos_acao:
-                try:
-                    recomendacao_plano = PlanoAcao.objects.get(plano=plano)
-                    gtd_score += recomendacao_plano.GTD
-                    kanban_score += recomendacao_plano.Kanban
-                    pomodoro_score += recomendacao_plano.Pomodoro
-                    ivylee_score += recomendacao_plano.Ivy_Lee
-                except PlanoAcao.DoesNotExist:
-                    print(f"Plano de ação '{plano}' não encontrado no banco de dados")
-
-            # Verificar estudos
-            for estudo in estudos:
-                try:
-                    recomendacao_estudo = Estudo.objects.get(estudo=estudo)
-                    gtd_score += recomendacao_estudo.GTD
-                    kanban_score += recomendacao_estudo.Kanban
-                    pomodoro_score += recomendacao_estudo.Pomodoro
-                    ivylee_score += recomendacao_estudo.Ivy_Lee
-                except Estudo.DoesNotExist:
-                    print(f"Estudo '{estudo}' não encontrado no banco de dados")
-
-            pontuacoes = {
-                'GTD': gtd_score,
-                'Kanban': kanban_score,
-                'Pomodoro': pomodoro_score,
-                'Ivy Lee': ivylee_score
+            # Captura os dados do formulário
+            dados_formulario = {
+                'curto_prazo_pessoal': form.cleaned_data.get('curto_prazo_pessoal'),
+                'medio_prazo_pessoal': form.cleaned_data.get('medio_prazo_pessoal'),
+                'longo_prazo_pessoal': form.cleaned_data.get('longo_prazo_pessoal'),
+                'curto_prazo_profissional': form.cleaned_data.get('curto_prazo_profissional'),
+                'medio_prazo_profissional': form.cleaned_data.get('medio_prazo_profissional'),
+                'longo_prazo_profissional': form.cleaned_data.get('longo_prazo_profissional'),
+                'metas_especificas': form.cleaned_data.get('metas_especificas'),
+                'planos_acao': form.cleaned_data.get('planos_acao'),
+                'outros_texto': form.cleaned_data.get('outros_texto'),
+                'visao_futuro': form.cleaned_data.get('visao_futuro'),
+                'estudos': form.cleaned_data.get('estudos'),
             }
-            melhor_metodologia = max(pontuacoes, key=pontuacoes.get)
 
-            # Adicionar recomendação ao objeto
-            planejamento_carreira.recomendacoes = ', '.join(map(str, recomendacoes))
-            planejamento_carreira.GTD = gtd_score
-            planejamento_carreira.Kanban = kanban_score
-            planejamento_carreira.Pomodoro = pomodoro_score
-            planejamento_carreira.Ivy_Lee = ivylee_score
-            planejamento_carreira.melhor_metodologia = melhor_metodologia
-            planejamento_carreira.save()
+            try:
+                # Enviar os dados para a API do Langflow
+                # resposta_chatgpt = run_flow(
+                #     message=str(dados_formulario),  # Converte os dados para string
+                #     endpoint=FLOW_ID,  # O ID ou endpoint do fluxo
+                #     tweaks=TWEAKS  # Opcional: ajustes no fluxo
+                # )
+            
+                # print(f"{resposta_chatgpt}")
+                resposta_chatgpt = {
+                'recomendacoes': 'Simulação de recomendação',
+                'melhor_metodologia': 'Kanban',
+                'pontuacoes': {
+                'GTD': 85,
+                'Kanban': 90,
+                'Pomodoro': 65,
+                'Ivy Lee': 60,
+    }
+}
 
-            return redirect('resultado_planejamento_carreira', pk=planejamento_carreira.pk)
+                # Processar a resposta do ChatGPT e salvar no modelo
+
+                planejamento_carreira = form.save(commit=False)
+                planejamento_carreira.recomendacoes = resposta_chatgpt.get('recomendacoes')
+                planejamento_carreira.melhor_metodologia = resposta_chatgpt.get('melhor_metodologia')
+                planejamento_carreira.GTD = resposta_chatgpt.get('pontuacoes', {}).get('GTD', 0)
+                planejamento_carreira.Kanban = resposta_chatgpt.get('pontuacoes', {}).get('Kanban', 0)
+                planejamento_carreira.Pomodoro = resposta_chatgpt.get('pontuacoes', {}).get('Pomodoro', 0)
+                planejamento_carreira.Ivy_Lee = resposta_chatgpt.get('pontuacoes', {}).get('Ivy Lee', 0)
+                planejamento_carreira.save()
+                
+                # Redirecionar para a página de resultados
+                return redirect('resultado_planejamento_carreira', pk=planejamento_carreira.pk)
+
+            except requests.exceptions.RequestException as e:
+                # Tratar erros da requisição
+                return render(request, self.template_name, {'form': form, 'error': str(e)})
 
         return render(request, self.template_name, {'form': form})
 
-
+    
 class ResultadoPlanejamentoView(View):
     template_name = 'GPC/resultado_planejamento_carreira.html'
 
@@ -301,7 +291,27 @@ class ResultadoPlanejamentoView(View):
         })
 
     
-    class ResultadoPlanejamentoCarreiraView(View):
-        model = PlanejamentoCarreira
-        template_name = 'GPC/aluno/projetodevida/resultado_planejamento_carreira.html'
-        context_object_name = 'planejamento_carreira'
+class ResultadoPlanejamentoView(View):
+    template_name = 'GPC/resultado_planejamento_carreira.html'
+
+    def get(self, request, pk, *args, **kwargs):
+        # Recuperar o objeto PlanejamentoCarreira com base no PK
+        planejamento_carreira = PlanejamentoCarreira.objects.get(pk=pk)
+        
+        # Montar o dicionário de pontuações a partir dos atributos armazenados
+        pontuacoes = {
+            'GTD': planejamento_carreira.gtd_score,
+            'Kanban': planejamento_carreira.kanban_score,
+            'Pomodoro': planejamento_carreira.pomodoro_score,
+            'Ivy Lee': planejamento_carreira.ivy_lee_score
+        }
+        melhor_metodologia = planejamento_carreira.melhor_metodologia
+
+        # Renderizar a página de resultados com os dados recuperados
+        return render(request, self.template_name, {
+            'recomendacoes': planejamento_carreira.recomendacoes,
+            'pontuacoes': pontuacoes,
+            'melhor_metodologia': melhor_metodologia,
+            'planejamento_carreira': planejamento_carreira
+        })
+

@@ -1,0 +1,17 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}
+Confirmar Exclusão
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>Confirmar Exclusão</h2>
+        <p>Tem certeza de que deseja excluir a empresa "{{ empresa.nome }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Deletar</button>
+            <button type="button" class="btn btn-secondary" onclick="history.back()">Cancelar</button>
+        </form>
+    </div>
+{% endblock %}

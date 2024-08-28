@@ -1,0 +1,70 @@
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+label {
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.botao-login,
+.botao-cadastro {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    width: 200px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 0 3px #000000;
+    border-radius: 30px;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    margin-top: 40px;
+    background-color: #ffcc00;
+}
+
+#id_username,
+#id_password {
+    border-radius: 20px;
+    width: 400px;
+}
+
+form {
+    align-self: center;
+}
+
+.texto-cadastro {
+    margin-top: 15px;
+}
+
+.texto-obrigatorio {
+    margin-top: 0px;
+    color: red;
+}
+
+.form-control:focus,
+#termos:focus {
+    border: 1px solid #000000;
+    box-shadow: 0 0 2px #000000;
+    outline-offset: 0px;
+    outline: none;
+}
+
+.termos {
+    align-content: center;
+    text-align: left;
+}
+
+#termos-checkbox {
+    transform: scale(0.6);
+}
+
+#texto-termos {
+    font-size: 16px;
+    margin-left: 0px;
+    padding-left: 0px;
+}

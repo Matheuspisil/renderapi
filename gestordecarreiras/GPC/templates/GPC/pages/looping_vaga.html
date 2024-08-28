@@ -1,0 +1,82 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}Mentoria{% endblock %}
+
+{% block content %}
+
+<style>
+    .div-p {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh;
+        background-color: #f0f0f0;
+    }
+
+    .p-emcontainer {
+        text-align: center;
+    }
+
+    .p-emcontent {
+        background: #fff;
+        padding: 50px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .p-emcontent h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .p-emcontent p {
+        font-size: 1.5em;
+        color: #666;
+    }
+
+    .p-emloader {
+        margin: 20px auto;
+        text-align: center;
+    }
+
+    .dot-animation {
+        display: inline-block;
+        margin-left: 5px;
+        color: red;
+        animation: dot-blink 3.5s infinite;
+        /*  */
+    }
+
+    @keyframes dot-blink {
+
+        0%,
+        40%,
+        100% {
+            opacity: 0;
+        }
+
+        20%,
+        60% {
+            opacity: 1;
+        }
+    }
+</style>
+
+<div class="div-p">
+    <div class="p-emcontainer">
+        <div class="p-emcontent">
+            <h1>Registrando <span style="color: red;">aluno</span></h1><br>
+            <p>Conectando-se à vaga, por favor aguarde <br><b>
+                    <span class="dot-animation">.</span>
+                    <span class="dot-animation">.</span>
+                    <span class="dot-animation">.</span></b>
+            </p>
+            <div class="p-emloader"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

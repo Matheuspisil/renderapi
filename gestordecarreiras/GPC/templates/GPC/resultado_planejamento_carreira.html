@@ -1,0 +1,26 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}Resultados do Planejamento de Carreira{% endblock %}
+
+{% block content %}
+<h1>Resultados do Planejamento de Carreira</h1>
+
+<h3>Recomendações Baseadas nas Metas Pessoais e Profissionais:</h3>
+<p>{{ recomendacoes_textarea }}</p>
+
+<h3>Recomendações Baseadas nas Metas Específicas e Planos de Ação:</h3>
+<p>{{ recomendacoes_boleanos }}</p>
+
+<h3>Melhor Metodologia de Organização:</h3>
+<p>{{ melhor_metodologia }}</p>
+
+<h3>Pontuações das Metodologias:</h3>
+<ul>
+    <li>GTD: {{ pontuacoes.GTD }}</li>
+    <li>Kanban: {{ pontuacoes.Kanban }}</li>
+    <li>Pomodoro: {{ pontuacoes.Pomodoro }}</li>
+    <li>Ivy Lee: {{ pontuacoes.Ivy_Lee }}</li>
+</ul>
+
+<a href="{% url 'projeto-vida-area' %}">Voltar para a área de Projeto de Vida</a>
+{% endblock %}

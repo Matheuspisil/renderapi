@@ -3,9 +3,9 @@ from django.contrib.auth import views as auth_views
 from GPC.views import views
 from GPC.views.views import CustomLoginView
 from GPC.views.decorators import unauthenticated_user
-from GPC.views.ProjetoVidaView import ProjetoVidaView, AutoconhecimentoView, PlanejamentoCarreiraView, ResultadoPlanejamentoView
+from GPC.views.ProjetoVidaView import ProjetoVidaView, AutoconhecimentoView, PlanejamentoCarreiraView, ResultadoPlanejamentoView, generate_pdf
 from GPC.views import AlunoView, EmpresaView, MentorView, VagasView, GestorView
-from GPC.views.GestorView import page_configuration_list, update_page_configuration, gestor_dashboard, gestor_alunos, gestor_empresas, gestor_mentores, gestor_vagas
+from GPC.views.GestorView import page_configuration_list, reset_configuration_list, update_page_configuration, index_configuration_list, header_configuration_list, footer_configuration_list, gestor_dashboard, gestor_alunos, gestor_empresas, gestor_mentores, gestor_vagas
 
 from GPC.views.EmpresaView import atualizar_solicitacao
 
@@ -35,6 +35,8 @@ urlpatterns = [
     path('aluno/mentoria/', AlunoView.aluno_mentoria, name='aluno-mentoria'),
     path('aluno/mentoria/<int:mentor_id>', AlunoView.aluno_nova_mentoria, name='aluno_nova_mentoria'),
     path('aluno/vaga/<int:vaga_id>', AlunoView.candidatar_vaga, name='aluno-candidatar-se'),
+    path('aluno/candidaturas/', AlunoView.aluno_candidaturas, name='aluno-candidaturas'),
+    path('download-curriculo/<int:id>', generate_pdf, name='download_curriculo'),
 
     # Mentor
     path('mentor/cadastro', MentorView.register_mentor, name='mentor_cadastro'),
@@ -71,7 +73,11 @@ urlpatterns = [
 
     # Gestor
     path('page-configurations/', page_configuration_list, name='page_configuration_list'),
+    path('page-configurations/reset/', reset_configuration_list, name='reset_configuration_list'),
     path('page-configurations/update/<int:config_id>/', update_page_configuration, name='update_page_configuration'),
+    path('configuracao/index/', index_configuration_list, name='index_configuration_list'),
+    path('configuracao/header/', header_configuration_list, name='header_configuration_list'),
+    path('configuracao/footer/', footer_configuration_list, name='footer_configuration_list'),
     path('gestor/dashboard/', GestorView.gestor_dashboard, name='gestor_dashboard'),
     path('gestor/alunos/', GestorView.gestor_alunos, name='gestor_alunos'),
     path('gestor/empresas/', GestorView.gestor_empresas, name='gestor_empresas'),

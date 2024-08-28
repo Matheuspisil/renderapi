@@ -1,0 +1,133 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}
+Detalhes da Vaga de Estágio
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Detalhes da Vaga de Estágio</h2>
+    <form method="POST" action="{% url 'update_vaga' vaga.slug %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="titulo" class="form-label">Título</label>
+            <input type="text" id="titulo" name="titulo" class="form-control" value="{{ vaga.titulo }}">
+        </div>
+        <div class="mb-3">
+            <label for="empresa" class="form-label">Empresa</label>
+            <input type="text" id="empresa" name="empresa" class="form-control" value="{{ vaga.empresa }}" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="tipo_vaga" class="form-label">Tipo da Vaga</label>
+            <input type="text" class="form-control" id="tipo_vaga" value="{{ vaga.tipo_vaga }}" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição</label>
+            <textarea id="descricao" name="descricao" class="form-control" rows="5">{{ vaga.descricao }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="requisitos" class="form-label">Requisitos</label>
+            <textarea id="requisitos" name="requisitos" class="form-control" rows="5">{{ vaga.requisitos }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="data_publicacao" class="form-label">Data de Publicação</label>
+            <input type="text" id="data_publicacao" name="data_publicacao" class="form-control" value="{{ vaga.data_publicacao }}" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="data_encerramento" class="form-label">Data de Encerramento</label>
+            <input type="text" id="data_encerramento" name="data_encerramento" class="form-control" value="{{ vaga.data_encerramento }}">
+        </div>
+        <div class="mb-3">
+            <label for="ativo" class="form-label">Ativo</label>
+            <input type="text" id="ativo" name="ativo" class="form-control" value="{% if vaga.ativo %}Sim{% else %}Não{% endif %}">
+        </div>
+
+        <!-- Checkboxes de Autoconhecimento Desejável -->
+        <div class="mb-3">
+            <label>Autoconhecimento Desejável</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_etica" name="etica" {% if vaga.etica %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_etica">Ética</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_autoeficacia" name="autoeficacia" {% if vaga.autoeficacia %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_autoeficacia">Autoeficácia</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_trabalho_equipe" name="trabalho_equipe" {% if vaga.trabalho_equipe %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_trabalho_equipe">Trabalho em Equipe</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_pens_criativo" name="pens_criativo" {% if vaga.pens_criativo %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_pens_criativo">Pensamento Criativo</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_pens_analitico" name="pens_analitico" {% if vaga.pens_analitico %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_pens_analitico">Pensamento Analítico</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_res_problemas" name="res_problemas" {% if vaga.res_problemas %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_res_problemas">Resolução de Problemas</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_comunicacao" name="comunicacao" {% if vaga.comunicacao %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_comunicacao">Comunicação</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_adaptabilidade" name="adaptabilidade" {% if vaga.adaptabilidade %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_adaptabilidade">Adaptabilidade</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_persistencia" name="persistencia" {% if vaga.persistencia %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_persistencia">Persistência</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_agilidade" name="agilidade" {% if vaga.agilidade %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_agilidade">Agilidade</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_gestao" name="gestao" {% if vaga.gestao %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_gestao">Gestão</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_orient_cliente" name="orient_cliente" {% if vaga.orient_cliente %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_orient_cliente">Orientação ao Cliente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_linguagens" name="linguagens" {% if vaga.linguagens %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_linguagens">Linguagens</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_programacao" name="programacao" {% if vaga.programacao %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_programacao">Programação</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_ia" name="ia" {% if vaga.ia %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_ia">Inteligência Artificial</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_bigdata" name="bigdata" {% if vaga.bigdata %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_bigdata">Big Data</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_ciberseg" name="ciberseg" {% if vaga.ciberseg %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_ciberseg">Cibersegurança</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_redes" name="redes" {% if vaga.redes %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_redes">Redes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="id_qualidade" name="qualidade" {% if vaga.qualidade %}checked{% endif %} disabled>
+                <label class="form-check-label" for="id_qualidade">Qualidade</label>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-warning">Editar</button>
+            <button type="button" class="btn btn-secondary" onclick="location.href='{% url 'empresa_vaga_list' empresa.pk %}'">Voltar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

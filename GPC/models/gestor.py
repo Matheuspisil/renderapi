@@ -14,17 +14,19 @@ class Gestor(models.Model):
         return f"{self.user.first_name} {self.user.last_name}"
 
 
-class PageConfiguration(models.Model):
-    page_name = models.CharField(max_length=255, unique=True)
-    background_color = models.CharField(max_length=7, default="#ffffff")
-    text_color = models.CharField(max_length=7, default="#000000")
-    icon = models.ImageField(upload_to='icons/', blank=True, null=True)
-
-    def reset_to_default(self):
-        self.background_color = "#ffffff"
-        self.text_color = "#000000"
-        self.icon = None
-        self.save()
+class ElementConfiguration(models.Model):
+    element_name = models.CharField(max_length=255, verbose_name='Nome do Elemento', null=True)  # Nome do seletor CSS
+    background_color = models.CharField(max_length=15, verbose_name='Cor de Fundo', null=True)
+    text_color = models.CharField(max_length=15, verbose_name='Cor do Texto', null=True)
 
     def __str__(self):
-        return f"{self.page_name} Configuration"
+        return f"Configurações do elemento {self.element_name}"
+
+
+class PageConfiguration(models.Model):
+    page_name = models.CharField(max_length=255, unique=True)
+    icon = models.ImageField(upload_to='icons/', null=True)
+    elements = models.ManyToManyField(ElementConfiguration, verbose_name='Elementos')
+
+    def __str__(self):
+        return f"Configurações da página {self.page_name}"

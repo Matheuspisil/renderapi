@@ -1,0 +1,156 @@
+{% extends "GPC/pages/base.html" %}
+
+{% block title %}
+Cadastro de Empresa
+{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'GPC/css/login_cadastro.css' %}">
+{% endblock %}
+
+{% load custom_filters %}
+
+{% block content %}
+<section class="banner">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <h2 class="mb-4">
+                        Cadastro de Empresa
+                    </h2>
+                    <p class="texto-obrigatorio">* Campos obrigatórios</p>
+
+                    <!-- etapa 1 -->
+                    <div class="step">
+                        <div class="form-group">
+                            <label for="id_email">Email: <span class="text-danger">*</span></label>
+                            {{ user_form.email|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password1">Senha: <span class="text-danger">*</span></label>
+                            {{ user_form.password1|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password2">Confirme a senha: <span class="text-danger">*</span></label>
+                            {{ user_form.password2|add_class:"form-control" }}
+                        </div><br>
+
+                        <button type="button" class="btn btn-primary nextBtn" onclick="nextStep(0)">Próximo</button>
+                    </div>
+
+                    <!-- etapa 2 -->
+                    <div class="step">
+                        <div class="form-group">
+                            <label for="first_name">Nome Completo: <span class="text-danger">*</span></label>
+                            {{ user_form.first_name|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_cnpj">CNPJ: <span class="text-danger">*</span></label>
+                            {{empresa_form.cnpj|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_razao_social">Razão Social: <span class="text-danger">*</span></label>
+                            {{empresa_form.razao_social|add_class:"form-control" }}
+                        </div><br>
+
+                        <button type="button" class="btn btn-secondary prevBtn" onclick="prevStep(1)">Anterior</button>
+                        <button type="button" class="btn btn-primary nextBtn" onclick="nextStep(1)">Próximo</button>
+                    </div>
+
+                    <!-- step 3 -->
+                    <div class="step">
+                        <div class="form-group">
+                            <label for="id_cep">CEP:</label>
+                            {{empresa_form.cep|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_endereco">Endereço: <span class="text-danger">*</span></label>
+                            {{empresa_form.endereco|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_numero">Número:</label>
+                            {{empresa_form.numero|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_complemento">Complemento:</label>
+                            {{empresa_form.complemento|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_bairro">Bairro:</label>
+                            {{empresa_form.bairro|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_cidade">Cidade:</label>
+                            {{empresa_form.cidade|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_estado">Estado:</label>
+                            {{empresa_form.estado|add_class:"form-control" }}
+                        </div><br>
+
+                        <button type="button" class="btn btn-secondary prevBtn" onclick="prevStep(2)">Anterior</button>
+                        <button type="button" class="btn btn-primary nextBtn" onclick="nextStep(2)">Próximo</button>
+                    </div>
+
+                    <!-- step 4 -->
+                    <div class="step">
+                        <div class="form-group">
+                            <label for="id_telefone">Telefone:</label>
+                            {{empresa_form.telefone|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_site">Site:</label>
+                            {{empresa_form.site|add_class:"form-control" }}
+                        </div><br>
+                        <!-- 
+                    <div class="form-groupempresa_form-check">
+                        <input type="checkbox" class="form-check-input" id="id_ativo" name="ativo" {% if empresa_form.instance.ativo %}checked{% endif %}>
+                        <label class="form-check-label" for="id_ativo">Ativo</label>
+                    </div> -->
+
+                        <div class="form-group form-check">
+                            <div class="termos">
+                                <input type="checkbox" class="form-check-input" id="termos-checkbox"
+                                    name="termos-checkbox" required>
+                                <label class="form-check-label" for="termos-checkbox" id="texto-termos">
+                                    <span class="text-danger">*</span> Li e concordo com os <a href="#">Termos de
+                                        Uso</a> e
+                                    a
+                                    <a href="#">Política de Privacidade</a> deste site.
+                                </label>
+                            </div>
+                        </div><br>
+
+                        <div class="d-flex justify-content-between mt-3">
+                            <button type="button" class="btn btn-secondary prevBtn"
+                                onclick="prevStep(3)">Anterior</button>
+                            <button type="submit" class="btn btn-primary"> Cadastrar </button>
+
+                            <button type="button" class="btn btn-danger" onclick="history.back()">Cancelar</button>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -28,6 +28,9 @@
             <td>
                 <a href="{% url 'atualizar_solicitacao' 'aceitar' solicitacao.id %}" class="btn btn-success">Aceitar</a>
                 <a href="{% url 'atualizar_solicitacao' 'recusar' solicitacao.id %}" class="btn btn-danger">Recusar</a>
+
+                <a href="{% url 'download_curriculo' solicitacao.aluno.id %}" class="btn btn-primary">Baixar Currículo</a>
+
             </td>
         </tr>
         {% endfor %}

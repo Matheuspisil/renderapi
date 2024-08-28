@@ -1,10 +1,10 @@
 {% extends "GPC/pages/base.html" %}
 
-{% load static %}
-
 {% block title %}
 Projeto de Vida
 {% endblock %}
+
+{% load static %}
 
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'GPC/css/estiloaluno.css' %}">
@@ -14,9 +14,15 @@ Projeto de Vida
 
 <section class="banner">
   <div class="container">
-    <h1>Projeto de vida</h1>
-    <h5>Complete seus cadastro para ter acesso as sugestões do nosso sitema.</h5>
-
+    <div class="row">
+      <div class="col-7">
+        <h1 class="h1-area-do-estudante"><b>Projeto de vida</b></h1>
+        <h4>Aqui no projeto de vida te ajudamos a criar um plano para o seu futuro! Você irá definir as metas você deseja alcançar na sua carreira, e definir os passos para chegar lá.</h4>
+      </div>
+      <div class="col-5">
+        <img class="foto-banner" src="{% static 'GPC/images/banner.png' %}" alt="Banner alunos">
+      </div>
+    </div>
 
     <div class="button-container">
       <button class="botao-projetovida" onclick="location.href='{% url 'autoconhecimento-formulario' %}'">
@@ -28,15 +34,23 @@ Projeto de Vida
       <button class="botao-projetovida" onclick="location.href='{% url 'projeto-vida' %}'">
         <i class="fa-solid fa-file"></i>Currículo
       </button>
+
     </div>
+    <br>
+
+    {% if user.planejamento_preenchido %}
+    <div class="resultados-planejamento">
+      <button class="botao-projetovida" onclick="location.href='{% url 'resultado_planejamento_carreira' user.pk %}'">
+        <i class="fa-solid fa-chart-bar"></i>Ver Resultados do Planejamento
+      </button>
+    </div>
+    {% endif %}
+
+
   </div>
 
-  {% if user.planejamento_preenchido %}
-  <div class="resultados-planejamento">
-    <button class="botao-projetovida" onclick="location.href='{% url 'resultado_planejamento_carreira' user.pk %}'">
-      <i class="fa-solid fa-chart-bar"></i>Ver Resultados do Planejamento
-    </button>
   </div>
-  {% endif %}
+
 </section>
+
 {% endblock %}

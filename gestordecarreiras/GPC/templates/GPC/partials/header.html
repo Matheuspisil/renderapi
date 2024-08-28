@@ -1,0 +1,62 @@
+{% load static %}
+<header class="main-header">
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                ProCarreiras
+                <!-- <img src="{% static 'GPC/images/favicon.ico' %}" alt="Logo Esquerda" width="200" height="30"> -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+
+                    {% if user.is_authenticated %}
+                    {% if user.user_type == 1 %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'aluno-area' %}">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'perfil' %}">Perfil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'projeto-vida-area' %}">Projeto de Vida</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'aluno-vagas' %}">Vagas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'aluno-mentoria' %}">Mentoria</a></li>
+
+                    {% elif user.user_type == 2 %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'mentor-area' %}">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'perfil' %}">Perfil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'mentor_solicitacoes' %}">Solicitações</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'mentor_relatorios' %}">Mentorias</a></li>
+
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'empresa_area' %}">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'perfil' %}">Perfil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'em_construcao' %}">Relatório</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'solicitacoes-alunos' %}">Solicitações</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'create_vaga' %}">Vagas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'empresa_hunter' %}">Caça Talentos</a></li>
+
+                    {% endif %}
+                    <li class="nav-item">
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link btn">Sair</button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Notícias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link button-green" href="{% url 'login' %}">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
