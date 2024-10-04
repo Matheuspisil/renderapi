@@ -1,5 +1,21 @@
 from pathlib import Path
 import os
+import dj_database_url
+from django.db import migrations
+
+def enable_autovacuum(apps, schema_editor):
+    with schema_editor.connection.cursor() as cursor:
+        cursor.execute('ALTER TABLE my_table SET (autovacuum_enabled = true);')
+
+class Migration(migrations.Migration):
+    dependencies = [
+        ('my_app', 'previous_migration'),
+    ]
+
+    operations = [
+        migrations.RunPython(enable_autovacuum),
+    ]
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -17,12 +33,15 @@ LOGIN_REDIRECT_URL = 'index'
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-!klje3mxtwu45m0g)li-uxqsob2dh=u4sl-%x%*fz&j3usg_#_"
+SECRET_KEY = os.environ.get("SECRET_KEY", "tec21boss")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG","False").lower() == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS=['blackestech.com.br','127.0.0.1','localhost']
+
+
+
 
 # Application definition
 
@@ -39,6 +58,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -68,17 +88,32 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "gestordecarreiras.wsgi.application"
 
-
+# Lógica para escolher o banco de dados de acordo com o ambiente
+# if os.getenv('DJANGO_ENV') == 'production':
+#     DATABASES = {
+#         'default': dj_database_url.parse(os.getenv("DATABASE_URL", ""))
+#     }
+# else:
+#     # Banco de dados local (SQLite)
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+#postgresql://procarreiras_user:2gfFlMXaAWYD5Ke4faqwL4WRJam49uBL@dpg-cqv814jtq21c73a3acgg-a.oregon-postgres.render.com/procarreiras
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default':{
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME':'futurobr',
+        'USER':'blackvush',
+        'PASSWORD':'150220',
+        'HOST':'localhost',
+        'PORT':'5432'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -122,11 +157,15 @@ STATICFILES_DIRS = [
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-STATIC_VERSION = '1.0.1'
+STATIC_VERSION = '2.0.1'
+# This production code might break development mode, so we check whether we're in DEBUG mode
+if not DEBUG:
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

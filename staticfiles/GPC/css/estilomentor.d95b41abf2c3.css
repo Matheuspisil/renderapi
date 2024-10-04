@@ -1,0 +1,241 @@
+/* Reset de margens e paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilo geral do HTML e do Body */
+html, body {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  caret-color: #6c757d;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body {
+  width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Estilo do Header */
+header.main-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #c5c3c3;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.navbar-nav .nav-item .nav-link {
+  padding: 10px;
+}
+
+/* Estilo do Main */
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Estilo do Footer */
+footer {
+  background-color: #f3f3f3;
+  border-top: 1px solid #f3f3f3;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.img-fluid.logo-footer {
+  width: 50%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.img-fluid.footer-br {
+  max-width: 80vh;
+  min-height: 13vh;
+  margin-top: -30%;
+  margin-left: 190%;
+}
+
+.active-nav-item {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.footer-img-wrapper img {
+  overflow: hidden;
+  width: calc(100% + 90px);
+  margin-left: -45px;
+  margin-right: -45px;
+}
+
+/* Estilos específicos para o body da área do mentor */
+body.bodymentor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.main-container {
+  background-color: #f3f3f3;
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 800px;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.area-mentor-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.area-mentor-button-rounded {
+  background-color: #ff8aef;
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 15px 20px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  font-size: 24px;
+  border-radius: 20px;
+  width: 220px;
+  height: 80px;
+  cursor: pointer;
+}
+
+.area-mentor-button-rounded i {
+  margin-right: 10px;
+}
+
+.area-mentor-button-rounded:hover {
+  background-color: #D646C7;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 48px;
+    text-indent: -30px;
+  }
+
+  h2 {
+    font-size: 24px;
+    text-indent: -30px;
+  }
+
+  h3 {
+    font-size: 18px;
+    text-indent: -30px;
+  }
+
+  h4 {
+    font-size: 14px;
+    text-indent: -30px;
+  }
+
+  p {
+    font-size: 11px;
+    text-indent: -30px;
+  }
+
+  .area-mentor-button-rounded {
+    width: calc(33% - 20px);
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 900px) {
+  h1 {
+    font-size: 36px;
+    text-indent: -25px;
+  }
+
+  h2 {
+    font-size: 20px;
+    text-indent: -25px;
+  }
+
+  h3 {
+    font-size: 16px;
+    text-indent: -25px;
+  }
+
+  h4 {
+    font-size: 12px;
+    text-indent: -25px;
+  }
+
+  p {
+    font-size: 10px;
+    text-indent: -25px;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 0;
+  }
+
+  .area-mentor-button-rounded {
+    width: calc(50% - 20px);
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 28px;
+    text-indent: -20px;
+  }
+
+  h2 {
+    font-size: 18px;
+    text-indent: -20px;
+  }
+
+  h3 {
+    font-size: 14px;
+    text-indent: -20px;
+  }
+
+  h4 {
+    font-size: 12px;
+    text-indent: -20px;
+  }
+
+  p {
+    font-size: 10px;
+    text-indent: -20px;
+  }
+
+  .navbar-nav .nav-item {
+    width: 100%;
+    text-align: center;
+  }
+
+  .area-mentor-button-rounded {
+    width: calc(100% - 20px);
+    min-width: 180px;
+  }
+}
